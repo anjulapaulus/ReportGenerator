@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codebuddy.controllers.CompanyProfile">
+   <children>
+      <Pane layoutX="-2.0" layoutY="-1.0" prefHeight="83.0" prefWidth="606.0" style="-fx-background-color: #2B2D2F;">
+         <children>
+            <Label layoutX="237.0" layoutY="29.0" text="Company Profile" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Label layoutX="72.0" layoutY="116.0" text="Company Name" />
+      <Label layoutX="72.0" layoutY="171.0" text="Company Address" />
+      <Label layoutX="72.0" layoutY="295.0" text="Telephone Number" />
+      <Label layoutX="72.0" layoutY="353.0" text="File Number" />
+      <Label layoutX="72.0" layoutY="472.0" text="Remarks" />
+      <TextField fx:id="companyNameTextField" layoutX="228.0" layoutY="110.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="300.0" />
+      <Label layoutX="72.0" layoutY="414.0" text="Date" />
+      <TextArea fx:id="companyAddressTextArea" layoutX="228.0" layoutY="171.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="83.0" prefWidth="300.0" />
+      <TextField fx:id="telephoneNumberTextField" layoutX="228.0" layoutY="287.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" />
+      <TextField fx:id="fileNumberTextField" layoutX="228.0" layoutY="347.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" />
+      <DatePicker fx:id="date" layoutX="228.0" layoutY="408.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" />
+      <TextArea fx:id="remarksTextArea" layoutX="228.0" layoutY="471.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="83.0" prefWidth="200.0" />
+      <Button layoutX="235.0" layoutY="588.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addUpdateCompanyProfile" prefHeight="30.0" prefWidth="132.0" style="-fx-background-color: #2B2D2F;" text="Save" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Label fx:id="companyNameError" layoutX="232.0" layoutY="145.0" textFill="RED" />
+      <Label fx:id="companyAddressError" layoutX="232.0" layoutY="259.0" textFill="RED" />
+      <Label fx:id="telephoneNumberError" layoutX="231.0" layoutY="321.0" textFill="RED" />
+      <Label fx:id="fileNumberError" layoutX="231.0" layoutY="383.0" textFill="RED" />
+      <Label fx:id="dateError" layoutX="232.0" layoutY="445.0" textFill="RED" />
+      <Label fx:id="remarksError" layoutX="232.0" layoutY="563.0" textFill="RED" />
+   </children>
+</AnchorPane>
