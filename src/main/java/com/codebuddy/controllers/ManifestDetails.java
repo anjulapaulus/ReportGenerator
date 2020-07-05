@@ -1,6 +1,7 @@
 package com.codebuddy.controllers;
 
 import com.codebuddy.LoggerInterface;
+import com.codebuddy.ReportGenerator;
 import com.codebuddy.models.CargoDetailsModel;
 import com.codebuddy.models.ManifestModel;
 import javafx.beans.property.BooleanProperty;
@@ -14,7 +15,9 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.StringConverter;
+import net.sf.jasperreports.engine.JRException;
 
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -523,6 +526,11 @@ public class ManifestDetails implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void generateManifest(ActionEvent event){
+        ReportGenerator reportGenerator = new ReportGenerator();
+        reportGenerator.GenerateManifestReport();
     }
 
     public String systemReference(){

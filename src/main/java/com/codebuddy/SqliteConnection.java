@@ -10,6 +10,7 @@ public class SqliteConnection {
             Connection conn = DriverManager.getConnection("jdbc:sqlite:cmsDB.db");
             return conn;
         } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
     }

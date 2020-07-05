@@ -219,7 +219,7 @@
       <Button layoutX="309.0" layoutY="777.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addORUpdateManifestDetails" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #000000;" text="Save" textFill="WHITE" />
       <Button layoutX="502.0" layoutY="777.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteManifestDetails" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #000000;" text="Delete" textFill="WHITE" />
       <Button layoutX="697.0" layoutY="777.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #000000;" text="Print Delivery Order" textFill="WHITE" />
-      <Button layoutX="889.0" layoutY="777.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #000000;" text="Print Manifest" textFill="WHITE" />
+      <Button layoutX="889.0" layoutY="777.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#generateManifest" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #000000;" text="Print Manifest" textFill="WHITE" />
       <Label fx:id="referenceLabel" layoutX="160.0" layoutY="157.0" textFill="RED">
          <font>
             <Font size="12.0" />
