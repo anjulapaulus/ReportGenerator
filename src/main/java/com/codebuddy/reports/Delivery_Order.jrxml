@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Delivery_Order" pageWidth="612" pageHeight="864" columnWidth="612" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="196cd533-98d9-4513-a491-b7a99e1877a1">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="167" splitType="Stretch">
+			<staticText>
+				<reportElement x="414" y="33" width="70" height="10" uuid="072fb509-f7c8-462a-beaa-f0fed8e25459"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[SF/FCL/2280]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="54" y="111" width="232" height="50" uuid="67d9b4f5-d8cc-4e7b-afdc-c6aae8d81862"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[WINGO LANKA PVT LTD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="503" y="33" width="72" height="10" uuid="48054c83-e2b0-4617-972c-5528896287f2"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="324" y="55" width="106" height="10" uuid="891136fe-a41c-471a-b430-88364a684a91"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[GLOBAL7/COL/0247]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="324" y="108" width="156" height="34" uuid="daf09933-1049-4d8b-b801-ba62cb946c29"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[FREIGHT SOLUTIONS LANKA PVT LTD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="486" y="99" width="88" height="10" uuid="b5f349a8-ad51-4716-9888-94288c793dcb"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[094112525568]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="324" y="152" width="96" height="10" uuid="752f2099-e2e0-4856-8e92-416f87fdc30a"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[18  10  13]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="203" splitType="Stretch">
+			<staticText>
+				<reportElement x="54" y="85" width="46" height="10" uuid="eb8623c1-f2ea-48ab-afa1-7b8853908a89"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[18058]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="85" width="62" height="10" uuid="0ff06605-7248-462c-af24-14a5f63af574"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[2018-06-10]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="67" splitType="Stretch">
+			<staticText>
+				<reportElement x="225" y="37" width="100" height="30" uuid="ac0ee011-37b6-4fe3-8f6f-1d743a55a3d3"/>
+				<text><![CDATA[Static Text]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -24,7 +24,7 @@
       <Label layoutX="673.0" layoutY="130.0" text="Port of Loading" />
       <Label layoutX="990.0" layoutY="130.0" prefHeight="17.0" prefWidth="94.0" text="Port of Discharge" />
       <Label layoutX="361.0" layoutY="182.0" prefHeight="17.0" prefWidth="78.0" text="Serial Number" />
-      <Label layoutX="674.0" layoutY="182.0" text="Master Shipper" />
+      <Label layoutX="42.0" layoutY="231.0" text="Master Shipper" />
       <Label layoutX="990.0" layoutY="179.0" text="MBL  Number" />
       <Label layoutX="990.0" layoutY="90.0" text="System Reference Number" />
       <Label fx:id="systemReferenceLabel" layoutX="1156.0" layoutY="89.0" />
@@ -34,12 +34,12 @@
       <TextField fx:id="portOfLoadingTextfield" layoutX="788.0" layoutY="125.0" />
       <TextField fx:id="portOfDischargeTextfield" layoutX="1100.0" layoutY="125.0" />
       <TextField fx:id="serialNumberTextfield" layoutX="474.0" layoutY="177.0" />
-      <TextField fx:id="masterShipperTextfield" layoutX="787.0" layoutY="177.0" />
+      <TextField fx:id="masterShipperTextfield" layoutX="155.0" layoutY="227.0" />
       <TextField fx:id="mblTextField" layoutX="1100.0" layoutY="177.0" />
-      <Label layoutX="42.0" layoutY="232.0" text="HBL Number" />
-      <TextField fx:id="hblNumberTextfield" layoutX="157.0" layoutY="227.0" />
-      <TextArea fx:id="shipperTextArea" layoutX="41.0" layoutY="297.0" prefHeight="69.0" prefWidth="231.0" />
-      <TextArea fx:id="notifyPartyTextarea" layoutX="289.0" layoutY="297.0" prefHeight="69.0" prefWidth="231.0" />
+      <Label layoutX="674.0" layoutY="182.0" text="HBL Number" />
+      <TextField fx:id="hblNumberTextfield" layoutX="788.0" layoutY="177.0" />
+      <TextArea fx:id="shipperAddressTextArea" layoutX="41.0" layoutY="297.0" prefHeight="69.0" prefWidth="231.0" />
+      <TextArea fx:id="notifyPartyAddressTextarea" layoutX="289.0" layoutY="297.0" prefHeight="69.0" prefWidth="231.0" />
       <TextArea fx:id="descriptionTextArea" layoutX="785.0" layoutY="297.0" prefHeight="69.0" prefWidth="231.0" />
       <TextArea fx:id="marksTextArea" layoutX="1035.0" layoutY="296.0" prefHeight="69.0" prefWidth="231.0" />
       <TextArea fx:id="remarksTextarea" layoutX="41.0" layoutY="410.0" prefHeight="69.0" prefWidth="231.0" />
@@ -49,7 +49,7 @@
       <Label layoutX="538.0" layoutY="277.0" text="Consignee" />
       <Label layoutX="1036.0" layoutY="273.0" text="Marks and Numbers" />
       <Label layoutX="42.0" layoutY="392.0" text="Remarks" />
-      <TextArea fx:id="consigneeTextArea" layoutX="537.0" layoutY="296.0" prefHeight="69.0" prefWidth="231.0" />
+      <TextArea fx:id="consigneeAddressTextArea" layoutX="537.0" layoutY="296.0" prefHeight="69.0" prefWidth="231.0" />
       <TableView fx:id="containerTableView" layoutX="41.0" layoutY="520.0" prefHeight="227.0" prefWidth="727.0" style="-fx-border-color: #000000;">
         <columns>
           <TableColumn fx:id="containerNumber" prefWidth="171.0" text="Container Number" />
@@ -101,7 +101,7 @@
             <Font size="12.0" />
          </font>
       </Label>
-      <Label fx:id="masterShipperErrorLabel" layoutX="789.0" layoutY="207.0" textFill="RED">
+      <Label fx:id="hblErrorLabel" layoutX="789.0" layoutY="207.0" textFill="RED">
          <font>
             <Font size="12.0" />
          </font>
@@ -111,22 +111,22 @@
             <Font size="12.0" />
          </font>
       </Label>
-      <Label fx:id="hblErrorLabel" layoutX="158.0" layoutY="256.0" textFill="RED">
+      <Label fx:id="masterShipperErrorLabel" layoutX="158.0" layoutY="256.0" textFill="RED">
          <font>
             <Font size="12.0" />
          </font>
       </Label>
-      <Label fx:id="shipperErrorLabel" layoutX="42.0" layoutY="369.0" textFill="RED">
+      <Label fx:id="shipperAddressErrorLabel" layoutX="42.0" layoutY="369.0" textFill="RED">
          <font>
             <Font size="12.0" />
          </font>
       </Label>
-      <Label fx:id="notifyPartyErrorLabel" layoutX="291.0" layoutY="370.0" textFill="RED">
+      <Label fx:id="notifyPartyAddressErrorLabel" layoutX="291.0" layoutY="370.0" textFill="RED">
          <font>
             <Font size="12.0" />
          </font>
       </Label>
-      <Label fx:id="consigneeErrorLabel" layoutX="540.0" layoutY="370.0" textFill="RED">
+      <Label fx:id="consigneeAddressErrorLabel" layoutX="540.0" layoutY="370.0" textFill="RED">
          <font>
             <Font size="12.0" />
          </font>
@@ -218,7 +218,7 @@
       </Label>
       <Button layoutX="309.0" layoutY="777.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addORUpdateManifestDetails" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #000000;" text="Save" textFill="WHITE" />
       <Button layoutX="502.0" layoutY="777.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteManifestDetails" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #000000;" text="Delete" textFill="WHITE" />
-      <Button layoutX="697.0" layoutY="777.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #000000;" text="Print Delivery Order" textFill="WHITE" />
+      <Button layoutX="697.0" layoutY="777.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#GenerateDO" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #000000;" text="Print Delivery Order" textFill="WHITE" />
       <Button layoutX="889.0" layoutY="777.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#generateManifest" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #000000;" text="Print Manifest" textFill="WHITE" />
       <Label fx:id="referenceLabel" layoutX="160.0" layoutY="157.0" textFill="RED">
          <font>
@@ -236,6 +236,20 @@
          </font>
       </Label>
       <Label fx:id="portOfDischargeErrorLabel" layoutX="1102.0" layoutY="157.0" textFill="RED">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="362.0" layoutY="231.0" text="Notify Party" />
+      <TextField fx:id="notifyPartyTextfield" layoutX="475.0" layoutY="227.0" />
+      <Label layoutX="673.0" layoutY="231.0" text="Consignee" />
+      <TextField fx:id="consigneeTextfield" layoutX="787.0" layoutY="227.0" />
+      <Label fx:id="notifyPartyErrorLabel" layoutX="476.0" layoutY="256.0" textFill="RED">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="consigneeErrorLabel" layoutX="789.0" layoutY="258.0" textFill="RED">
          <font>
             <Font size="12.0" />
          </font>
