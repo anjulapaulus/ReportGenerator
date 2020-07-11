@@ -154,58 +154,6 @@ public class CompanyProfile implements Initializable {
         }
     }
 
-//    public void deleteCompanyProfile(ActionEvent event) {
-//        try {
-//            if (companyModel.isExistCompany()) {
-//                Alert alert = new Alert(Alert.AlertType.WARNING, "Do you want to delete? ", ButtonType.YES, ButtonType.NO);
-//                Optional<ButtonType> result = alert.showAndWait();
-//                if (!result.isPresent()) {
-//                    hideSource(event);
-//                }
-//                else if (result.get() == ButtonType.YES) {
-//                    companyModel.deleteCompanyDetails(fileNumberTextField.getText());
-//                    Alert alert1 = new Alert(Alert.AlertType.INFORMATION, "Deleted Company Profile ", ButtonType.OK);
-//                    alert1.showAndWait();
-//                    boolean check = CompanyProfileModel.getLatestCompanyDetails();
-//
-//                    if (check) {
-//                        CompanyProfileModel.getLatestCompanyDetails();
-//                        companyNameTextField.setText(CompanyProfileModel.getCompany_name());
-//                        companyAddressTextArea.setText(CompanyProfileModel.getCompany_address());
-//                        telephoneNumberTextField.setText(CompanyProfileModel.getTelephone());
-//                        fileNumberTextField.setText(CompanyProfileModel.getFile_number());
-//                        LocalDate localDate = (LocalDate) converter.fromString(CompanyProfileModel.getDate());
-//                        date.setConverter(converter);
-//                        date.setValue(localDate);
-//                        remarksTextArea.setText(CompanyProfileModel.getRemarks());
-//                        hideSource(event);
-//                    }else {
-//                        companyNameTextField.setText("");
-//                        companyAddressTextArea.setText("");
-//                        telephoneNumberTextField.setText("");
-//                        fileNumberTextField.setText("");
-//                        date.setValue(null);
-//                        remarksTextArea.setText("");
-//                    }
-//                }
-//                else if (result.get() == ButtonType.NO) {
-//                    hideSource(event);
-//                }
-//            } else {
-//                Alert alert = new Alert(Alert.AlertType.INFORMATION, "The company details cannot be deleted", ButtonType.OK);
-//                alert.showAndWait();
-//                companyNameTextField.setText("");
-//                companyAddressTextArea.setText("");
-//                telephoneNumberTextField.setText("");
-//                fileNumberTextField.setText("");
-//                date.setValue(null);
-//                remarksTextArea.setText("");
-//            }
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     private void hideSource(ActionEvent event) {
         ((Node) event.getSource()).getScene().getWindow().hide();

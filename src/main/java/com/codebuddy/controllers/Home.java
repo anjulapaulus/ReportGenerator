@@ -20,7 +20,7 @@ public class Home implements Initializable {
         Stage primaryStage = new Stage();
         FXMLLoader loader = new FXMLLoader();
         try {
-            Pane root = loader.load(getClass().getResource("../views/company_profile.fxml").openStream());
+            Pane root = loader.load(getClass().getResource("/views/company_profile.fxml").openStream());
             Scene scene = new Scene(root, 600, 650);
             primaryStage.setTitle("Cargo Maintenance System");
             primaryStage.setResizable(false);
@@ -35,7 +35,7 @@ public class Home implements Initializable {
         Stage primaryStage = new Stage();
         FXMLLoader loader = new FXMLLoader();
         try {
-            Pane root = loader.load(getClass().getResource("../views/cargo_details.fxml").openStream());
+            Pane root = loader.load(getClass().getResource("/views/cargo_details.fxml").openStream());
             Scene scene = new Scene(root, 820, 850);
             primaryStage.setTitle("Cargo Maintenance System");
             primaryStage.setResizable(false);
@@ -51,10 +51,26 @@ public class Home implements Initializable {
         Stage primaryStage = new Stage();
         FXMLLoader loader = new FXMLLoader();
         try {
-            Pane root = loader.load(getClass().getResource("../views/manifest_details.fxml").openStream());
+            Pane root = loader.load(getClass().getResource("/views/manifest_details.fxml").openStream());
             Scene scene = new Scene(root, 1300, 900);
             primaryStage.setTitle("Cargo Maintenance System");
 //            primaryStage.setResizable(false);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void OpenCompanyDetails (ActionEvent event) {
+//        hideSource(event);
+        Stage primaryStage = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        try {
+            Pane root = loader.load(getClass().getResource("/views/company.fxml").openStream());
+            Scene scene = new Scene(root, 600, 450);
+            primaryStage.setTitle("Cargo Maintenance System");
+            primaryStage.setResizable(false);
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {

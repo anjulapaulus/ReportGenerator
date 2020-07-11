@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CargoDetailsModel {
     private static Connection connection;
@@ -260,6 +262,32 @@ public class CargoDetailsModel {
             }
         }
 
+    }
+
+    public List<String> getAllCargoDetails(){
+        List<String> nameList = new ArrayList<>();
+        String query = "SELECT * FROM cargo_details";
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String name = resultSet.getString("reference");
+                nameList.add(name);
+            }
+//            return containersList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            try {
+                preparedStatement.close();
+                resultSet.close();
+                return nameList;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
     }
 
     public static String getSystem_reference() {

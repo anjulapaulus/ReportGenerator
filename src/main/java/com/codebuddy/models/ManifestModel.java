@@ -1,11 +1,14 @@
 package com.codebuddy.models;
 
 import com.codebuddy.SqliteConnection;
+import com.codebuddy.controllers.Container;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ManifestModel {
     private static Connection connection;
@@ -22,11 +25,13 @@ public class ManifestModel {
     private static String eta;
     private static String serial_number;
     private static String master_shipper;
-    private static String mbl_number;
-    private static String hbl_number;
-    private static String shipper;
     private static String notify_party;
     private static String consignee;
+    private static String mbl_number;
+    private static String hbl_number;
+    private static String shipperAddress;
+    private static String notify_address;
+    private static String consignee_address;
     private static String description_of_cargo;
     private static String marks_numbers;
     private static String remarks;
@@ -195,9 +200,9 @@ public class ManifestModel {
             }
         }
     }
-    public boolean addManifestDetails(String file_number, String system_reference, String job_reference, String vessel_voyage, String portOfLoading, String portOfDischarge, String eta, String serial_number, String masterShipper, String mbl_number, String hbl_number, String shipper, String notify_party, String consignee, String descriptionOfCargo, String marks_numbers, String remarks, String gross_weight, String number_packages,String net_weight,String package_type,String unit,String do_expiry,String cbm,String freight) throws SQLException {
-        String query = "INSERT INTO manifest_details(file_number, system_reference, job_reference, vessel_voyage, portOfLoading, portOfDischarge, eta, serial_number, masterShipper, mbl_number, hbl_number, shipper, notify_party, consignee, descriptionOfCargo, marks_numbers, remarks, gross_weight, number_packages, net_weight, package_type, unit, do_expiry, cbm, freight)" +
-                " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    public boolean addManifestDetails(String file_number, String system_reference, String job_reference, String vessel_voyage, String portOfLoading, String portOfDischarge, String eta, String serial_number, String masterShipper,String notify_party, String consignee, String mbl_number, String hbl_number, String shipperAddress, String notify_party_address, String consignee_address, String descriptionOfCargo, String marks_numbers, String remarks, String gross_weight, String number_packages,String net_weight,String package_type,String unit,String do_expiry,String cbm,String freight) throws SQLException {
+        String query = "INSERT INTO manifest_details(file_number, system_reference, job_reference, vessel_voyage, portOfLoading, portOfDischarge, eta, serial_number, masterShipper,notify_party,consignee, mbl_number, hbl_number, shipper_address, notify_party_address, consignee_address, descriptionOfCargo, marks_numbers, remarks, gross_weight, number_packages, net_weight, package_type, unit, do_expiry, cbm, freight)" +
+                " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try {
             preparedStatement = connection.prepareStatement(query);
@@ -210,22 +215,24 @@ public class ManifestModel {
             preparedStatement.setString(7, eta);
             preparedStatement.setString(8, serial_number);
             preparedStatement.setString(9, masterShipper);
-            preparedStatement.setString(10, mbl_number);
-            preparedStatement.setString(11, hbl_number);
-            preparedStatement.setString(12, shipper);
-            preparedStatement.setString(13, notify_party);
-            preparedStatement.setString(14, consignee);
-            preparedStatement.setString(15, descriptionOfCargo);
-            preparedStatement.setString(16, marks_numbers);
-            preparedStatement.setString(17, remarks);
-            preparedStatement.setString(18, gross_weight);
-            preparedStatement.setString(19, number_packages);
-            preparedStatement.setString(20, net_weight);
-            preparedStatement.setString(21, package_type);
-            preparedStatement.setString(22, unit);
-            preparedStatement.setString(23, do_expiry);
-            preparedStatement.setString(24, cbm);
-            preparedStatement.setString(25, freight);
+            preparedStatement.setString(10, notify_party);
+            preparedStatement.setString(11, consignee);
+            preparedStatement.setString(12, mbl_number);
+            preparedStatement.setString(13, hbl_number);
+            preparedStatement.setString(14, shipperAddress);
+            preparedStatement.setString(15, notify_party_address);
+            preparedStatement.setString(16, consignee_address);
+            preparedStatement.setString(17, descriptionOfCargo);
+            preparedStatement.setString(18, marks_numbers);
+            preparedStatement.setString(19, remarks);
+            preparedStatement.setString(20, gross_weight);
+            preparedStatement.setString(21, number_packages);
+            preparedStatement.setString(22, net_weight);
+            preparedStatement.setString(23, package_type);
+            preparedStatement.setString(24, unit);
+            preparedStatement.setString(25, do_expiry);
+            preparedStatement.setString(26, cbm);
+            preparedStatement.setString(27, freight);
             int result = preparedStatement.executeUpdate();
             if (result == 1) {
                 return true;
@@ -241,9 +248,9 @@ public class ManifestModel {
         }
     }
 
-    public boolean updateManifestDetails(String job_reference, String vessel_voyage, String portOfLoading, String portOfDischarge, String eta, String serial_number, String masterShipper, String mbl_number, String hbl_number, String shipper, String notify_party, String consignee, String descriptionOfCargo, String marks_numbers, String remarks, String gross_weight, String number_packages,String net_weight,String package_type,String unit,String do_expiry,String cbm,String freight) throws SQLException {
-        String query = "UPDATE manifest_details SET vessel_voyage = ?,portOfLoading  = ?, portOfDischarge = ?, eta = ?, serial_number = ?, masterShipper = ? ," +
-                "mbl_number = ?,hbl_number  = ?, shipper = ?, notify_party = ?, consignee = ?, descriptionOfCargo = ?," +
+    public boolean updateManifestDetails(String job_reference, String vessel_voyage, String portOfLoading, String portOfDischarge, String eta, String serial_number, String masterShipper,String notify_party, String consignee, String mbl_number, String hbl_number, String shipperAddress, String notify_party_address, String consignee_address, String descriptionOfCargo, String marks_numbers, String remarks, String gross_weight, String number_packages,String net_weight,String package_type,String unit,String do_expiry,String cbm,String freight) throws SQLException {
+        String query = "UPDATE manifest_details SET vessel_voyage = ?,portOfLoading  = ?, portOfDischarge = ?, eta = ?, serial_number = ?, masterShipper = ? ,notify_party = ?, consignee = ?," +
+                "mbl_number = ?, hbl_number  = ?, shipper_address = ?, notify_party_address = ?, consignee_address = ?, descriptionOfCargo = ?," +
                 "marks_numbers = ?,remarks  = ?, gross_weight = ?, number_packages = ?, net_weight = ?, package_type = ?," +
                 "unit = ?,do_expiry  = ?, cbm = ?, freight = ? " +
                 "WHERE job_reference = ?";
@@ -256,23 +263,25 @@ public class ManifestModel {
             preparedStatement.setString(4, eta);
             preparedStatement.setString(5, serial_number);
             preparedStatement.setString(6, masterShipper);
-            preparedStatement.setString(7, mbl_number);
-            preparedStatement.setString(8, hbl_number);
-            preparedStatement.setString(9, shipper);
-            preparedStatement.setString(10, notify_party);
-            preparedStatement.setString(11, consignee);
-            preparedStatement.setString(12, descriptionOfCargo);
-            preparedStatement.setString(13, marks_numbers);
-            preparedStatement.setString(14, remarks);
-            preparedStatement.setString(15, gross_weight);
-            preparedStatement.setString(16, number_packages);
-            preparedStatement.setString(17, net_weight);
-            preparedStatement.setString(18, package_type);
-            preparedStatement.setString(19, unit);
-            preparedStatement.setString(20, do_expiry);
-            preparedStatement.setString(21, cbm);
-            preparedStatement.setString(22, freight);
-            preparedStatement.setString(23, job_reference);
+            preparedStatement.setString(7, notify_party);
+            preparedStatement.setString(8, consignee);
+            preparedStatement.setString(9, mbl_number);
+            preparedStatement.setString(10, hbl_number);
+            preparedStatement.setString(11, shipperAddress);
+            preparedStatement.setString(12, notify_party_address);
+            preparedStatement.setString(13, consignee_address);
+            preparedStatement.setString(14, descriptionOfCargo);
+            preparedStatement.setString(15, marks_numbers);
+            preparedStatement.setString(16, remarks);
+            preparedStatement.setString(17, gross_weight);
+            preparedStatement.setString(18, number_packages);
+            preparedStatement.setString(19, net_weight);
+            preparedStatement.setString(20, package_type);
+            preparedStatement.setString(21, unit);
+            preparedStatement.setString(22, do_expiry);
+            preparedStatement.setString(23, cbm);
+            preparedStatement.setString(24, freight);
+            preparedStatement.setString(25, job_reference);
             int result = preparedStatement.executeUpdate();
             if (result == 1) {
                 return true;
@@ -323,11 +332,13 @@ public class ManifestModel {
                 eta = resultSet.getString("eta");
                 serial_number = resultSet.getString("serial_number");
                 master_shipper = resultSet.getString("masterShipper");
-                mbl_number = resultSet.getString("mbl_number");
-                hbl_number = resultSet.getString("hbl_number");
-                shipper = resultSet.getString("shipper");
                 notify_party = resultSet.getString("notify_party");
                 consignee = resultSet.getString("consignee");
+                mbl_number = resultSet.getString("mbl_number");
+                hbl_number = resultSet.getString("hbl_number");
+                shipperAddress = resultSet.getString("shipper_address");
+                notify_address = resultSet.getString("notify_party_address");
+                consignee_address = resultSet.getString("consignee_address");
                 description_of_cargo = resultSet.getString("descriptionOfCargo");
                 marks_numbers = resultSet.getString("marks_numbers");
                 remarks = resultSet.getString("remarks");
@@ -388,6 +399,184 @@ public class ManifestModel {
         }
     }
 
+    public ArrayList<Container> getContainers(String reference){
+        ArrayList<Container> containersList = new ArrayList<>();
+        Container container = new Container();
+        String query = "SELECT * FROM container_details WHERE job_reference = ?";
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, reference);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String container_number = resultSet.getString("container_number");
+                String seal_number = resultSet.getString("seal_number");
+                String size = resultSet.getString("size");
+                String status = resultSet.getString("status");
+                String packages = resultSet.getString("packages");
+                String cbmContainer = resultSet.getString("cbm");
+                containersList.add(container.produce(container_number,seal_number,size,status,packages,cbmContainer));
+            }
+//            return containersList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            try {
+                preparedStatement.close();
+                resultSet.close();
+                return containersList;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+    }
+    public List<String> getAddressParty(){
+        List<String> addressList = new ArrayList<>();
+        String query = "SELECT * FROM manifest_details";
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String masterShipper = resultSet.getString("masterShipper");
+                String notify_party = resultSet.getString("notify_party");
+                String consignee = resultSet.getString("consignee");
+                if (!addressList.contains(masterShipper)){
+//                    System.out.println(masterShipper);
+                    addressList.add(masterShipper);
+                }
+                if (!addressList.contains(notify_party)){
+//                    System.out.println(notify_party);
+                    addressList.add(notify_party);
+                }
+                if (!addressList.contains(consignee)){
+//                    System.out.println(consignee);
+                    addressList.add(consignee);
+                }
+                if (!addressList.contains(masterShipper) && !addressList.contains(notify_party)){
+                    addressList.add(masterShipper);
+                    addressList.add(notify_party);
+//                    System.out.println(masterShipper);
+//                    System.out.println(notify_party);
+                }
+                if (!addressList.contains(masterShipper) && !addressList.contains(consignee)){
+                    addressList.add(masterShipper);
+                    addressList.add(consignee);
+//                    System.out.println(masterShipper);
+//                    System.out.println(consignee);
+                }
+                if (!addressList.contains(notify_party) && !addressList.contains(consignee)){
+                    addressList.add(notify_party);
+                    addressList.add(consignee);
+                }
+                if (!addressList.contains(masterShipper) && !addressList.contains(notify_party) && !addressList.contains(consignee)){
+                    addressList.add(masterShipper);
+                    addressList.add(notify_party);
+                    addressList.add(consignee);
+//                    System.out.println(masterShipper);
+//                    System.out.println(notify_party);
+//                    System.out.println(consignee);
+                }
+            }
+//            return containersList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            try {
+                preparedStatement.close();
+                resultSet.close();
+                return addressList;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+    }
+
+    public String getAddress(String party){
+        List<String> nameList = new ArrayList<>();
+        List<String> addressList = new ArrayList<>();
+        String query = "SELECT * FROM manifest_details";
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String masterShipper = resultSet.getString("masterShipper");
+                String notify_party = resultSet.getString("notify_party");
+                String consignee = resultSet.getString("consignee");
+                String shipper_address = resultSet.getString("shipper_address");
+                String notify_party_address = resultSet.getString("notify_party_address");
+                String consignee_address = resultSet.getString("consignee_address");
+                if (!nameList.contains(masterShipper)){
+//                    System.out.println(masterShipper);
+                    nameList.add(masterShipper);
+                    addressList.add(shipper_address);
+                }
+                if (!nameList.contains(notify_party)){
+//                    System.out.println(notify_party);
+                    nameList.add(notify_party);
+                    addressList.add(notify_party_address);
+                }
+                if (!nameList.contains(consignee)){
+//                    System.out.println(consignee);
+                    nameList.add(consignee);
+                    addressList.add(consignee_address);
+                }
+                if (!nameList.contains(masterShipper) && !nameList.contains(notify_party)){
+                    nameList.add(masterShipper);
+                    nameList.add(notify_party);
+                    addressList.add(shipper_address);
+                    addressList.add(notify_party_address);
+//                    System.out.println(masterShipper);
+//                    System.out.println(notify_party);
+                }
+                if (!nameList.contains(masterShipper) && !nameList.contains(consignee)){
+                    nameList.add(masterShipper);
+                    nameList.add(consignee);
+                    addressList.add(shipper_address);
+                    addressList.add(consignee_address);
+//                    System.out.println(masterShipper);
+//                    System.out.println(consignee);
+                }
+                if (!nameList.contains(notify_party) && !nameList.contains(consignee)){
+                    nameList.add(notify_party);
+                    nameList.add(consignee);
+                    addressList.add(notify_party_address);
+                    addressList.add(consignee_address);
+                }
+                if (!nameList.contains(masterShipper) && !nameList.contains(notify_party) && !nameList.contains(consignee)){
+                    nameList.add(masterShipper);
+                    nameList.add(notify_party);
+                    nameList.add(consignee);
+                    addressList.add(shipper_address);
+                    addressList.add(notify_party_address);
+                    addressList.add(consignee_address);
+//                    System.out.println(masterShipper);
+//                    System.out.println(notify_party);
+//                    System.out.println(consignee);
+                }
+            }
+//            return containersList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            try {
+                preparedStatement.close();
+                resultSet.close();
+                if (nameList.contains(party)){
+                    int index = nameList.indexOf(party);
+                    String address = addressList.get(index);
+                    return address;
+                }
+                return null;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+    }
     public static String getID(){
         String query = "SELECT id FROM manifest_details ORDER BY id DESC LIMIT 1";
         try {
@@ -457,6 +646,59 @@ public class ManifestModel {
 
     }
 
+    public List<String> getAllManifests(){
+        List<String> addressList = new ArrayList<>();
+        String query = "SELECT * FROM manifest_details";
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String name = resultSet.getString("job_reference");
+                addressList.add(name);
+            }
+//            return containersList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            try {
+                preparedStatement.close();
+                resultSet.close();
+                return addressList;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+    }
+
+    public List<String> getAllContainers(String reference){
+        List<String> containerList = new ArrayList<>();
+        String query = "SELECT * FROM container_details WHERE job_reference = ?";
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1,reference);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String name = resultSet.getString("container_number");
+                containerList.add(name);
+            }
+//            return containersList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            try {
+                preparedStatement.close();
+                resultSet.close();
+                return containerList;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+    }
+
     public static String getFile_number(){
         return file_number;
     }
@@ -481,20 +723,27 @@ public class ManifestModel {
     public static String getMaster_shipper(){
         return master_shipper;
     }
+    public static String getNotify_party(){
+        return notify_party;
+    }
+    public static String getConsignee(){
+        return consignee;
+    }
     public static String getMbl_number(){
         return mbl_number;
     }
     public static String getHbl_number(){
         return hbl_number;
     }
-    public static String getShipper(){
-        return shipper;
+    public static String getShipperAddress(){
+        return shipperAddress;
     }
-    public static String getNotify_party(){
-        return notify_party;
+    public static String getNotify_address() {
+        return notify_address;
     }
-    public static String getConsignee(){
-        return consignee;
+
+    public static String getConsignee_address() {
+        return consignee_address;
     }
     public static String getDescription_of_cargo(){
         return description_of_cargo;

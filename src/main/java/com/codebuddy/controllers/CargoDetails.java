@@ -11,12 +11,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.util.StringConverter;
+import org.controlsfx.control.textfield.TextFields;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -353,6 +355,8 @@ public class CargoDetails implements Initializable {
         if (cargoDetailsModel.idDBConnected()) {
             logger.log("INFO", "Company.initialize.Database Connected");
             try {
+                List<String> list1 = cargoDetailsModel.getAllCargoDetails();
+                TextFields.bindAutoCompletion(referenceTextField, list1);
                 fileNumberLabel.setText(cargoDetailsModel.getFileNumber());
                 systemReferenceLabel.setText(systemReference());
             } catch (SQLException e) {

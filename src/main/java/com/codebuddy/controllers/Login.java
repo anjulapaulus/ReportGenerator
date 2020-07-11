@@ -56,7 +56,7 @@ public class Login implements Initializable {
                     Stage primaryStage = new Stage();
                     FXMLLoader loader = new FXMLLoader();
                     try {
-                        Pane root = loader.load(getClass().getResource("../views/home.fxml").openStream());
+                        Pane root = loader.load(getClass().getResource("/views/home.fxml").openStream());
                         Scene scene = new Scene(root, 600, 400);
                         primaryStage.setTitle("Cargo Maintenance System");
                         primaryStage.setResizable(false);
