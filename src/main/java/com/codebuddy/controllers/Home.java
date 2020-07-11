@@ -68,7 +68,7 @@ public class Home implements Initializable {
         FXMLLoader loader = new FXMLLoader();
         try {
             Pane root = loader.load(getClass().getResource("/views/company.fxml").openStream());
-            Scene scene = new Scene(root, 600, 450);
+            Scene scene = new Scene(root, 800, 600);
             primaryStage.setTitle("Cargo Maintenance System");
             primaryStage.setResizable(false);
             primaryStage.setScene(scene);

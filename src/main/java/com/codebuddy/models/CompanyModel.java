@@ -19,6 +19,11 @@ public class CompanyModel {
     private static String company_name;
     private static String company_address;
     private static String company_telephone;
+    private static String company_address2;
+    private static String company_address3;
+    private static String company_address4;
+    private static String company_address5;
+    private static String company_address6;
 
     public CompanyModel() {
         connection = SqliteConnection.connection();
@@ -36,14 +41,19 @@ public class CompanyModel {
         }
     }
 
-    public boolean addCompanyDetails(String name, String address, String telephone) {
-        String query = "INSERT INTO company_details(company_name,company_address,company_telephone)" +
-                " VALUES(?,?,?)";
+    public boolean addCompanyDetails(String name, String address, String telephone,String address_2,String address_3,String address_4,String address_5,String address_6) {
+        String query = "INSERT INTO company_details(company_name,company_address,company_telephone,address_2,address_3,address_4,address_5,address_6)" +
+                " VALUES(?,?,?,?,?,?,?,?)";
         try {
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, address);
             preparedStatement.setString(3, telephone);
+            preparedStatement.setString(4, address_2);
+            preparedStatement.setString(5, address_3);
+            preparedStatement.setString(6, address_4);
+            preparedStatement.setString(7, address_5);
+            preparedStatement.setString(8, address_6);
 
             int result = preparedStatement.executeUpdate();
             if (result == 1) {
@@ -63,15 +73,20 @@ public class CompanyModel {
         }
     }
 
-    public boolean updateCompanyDetails(String name, String address, String telephone) {
+    public boolean updateCompanyDetails(String name, String address, String telephone,String address_2,String address_3,String address_4,String address_5,String address_6) {
         String query = "UPDATE company_details " +
-                "SET company_address = ?, company_telephone = ?" +
+                "SET company_address = ?, company_telephone = ?, address_2 = ?,address_3 = ?,address_4 = ?,address_5 = ?,address_6 = ?" +
                 " WHERE company_name = ?";
         try {
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, address);
             preparedStatement.setString(2, telephone);
-            preparedStatement.setString(3, name);
+            preparedStatement.setString(3, address_2);
+            preparedStatement.setString(4, address_3);
+            preparedStatement.setString(5, address_4);
+            preparedStatement.setString(6, address_5);
+            preparedStatement.setString(7, address_6);
+            preparedStatement.setString(8, name);
             int result = preparedStatement.executeUpdate();
             if (result == 1) {
                 return true;
@@ -137,14 +152,60 @@ public class CompanyModel {
     }
 
     public List<String> getAllCompanies(){
-        List<String> addressList = new ArrayList<>();
+        List<String> nameList = new ArrayList<>();
         String query = "SELECT * FROM company_details";
         try {
             preparedStatement = connection.prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 String name = resultSet.getString("company_name");
-                addressList.add(name);
+                nameList.add(name);
+            }
+//            return containersList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            try {
+                preparedStatement.close();
+                resultSet.close();
+                return nameList;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+    }
+    public List<String> getAllCompaniesAddresses(String name) {
+        List<String> addressList = new ArrayList<>();
+        String query = "SELECT * FROM company_details WHERE company_name = ?";
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1,name);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String address1 = resultSet.getString("company_address");
+                String address2 = resultSet.getString("address_2");
+                String address3 = resultSet.getString("address_3");
+                String address4 = resultSet.getString("address_4");
+                String address5 = resultSet.getString("address_5");
+                String address6 = resultSet.getString("address_6");
+                addressList.add(address1);
+                if (address2 != null){
+                    addressList.add(address2);
+                }
+                if (address3 != null){
+                    addressList.add(address3);
+                }
+                if (address4 != null){
+                    addressList.add(address4);
+                }
+                if (address5 != null){
+                    addressList.add(address5);
+                }
+                if (address6 != null){
+                    addressList.add(address6);
+                }
             }
 //            return containersList;
         } catch (Exception e) {
@@ -172,7 +233,11 @@ public class CompanyModel {
                 company_name = resultSet.getString("company_name");
                 company_address = resultSet.getString("company_address");
                 company_telephone = resultSet.getString("company_telephone");
-
+                company_address2 = resultSet.getString("address_2");
+                company_address3 = resultSet.getString("address_3");
+                company_address4 = resultSet.getString("address_4");
+                company_address5 = resultSet.getString("address_5");
+                company_address6 = resultSet.getString("address_6");
                 return true;
             }
         } catch (Exception e) {
@@ -197,6 +262,26 @@ public class CompanyModel {
     }
     public static String getCompany_telephone(){
         return company_telephone;
+    }
+
+    public static String getCompany_address2() {
+        return company_address2;
+    }
+
+    public static String getCompany_address3() {
+        return company_address3;
+    }
+
+    public static String getCompany_address4() {
+        return company_address4;
+    }
+
+    public static String getCompany_address5() {
+        return company_address5;
+    }
+
+    public static String getCompany_address6() {
+        return company_address6;
     }
 }
 

@@ -236,9 +236,9 @@
             <Font size="12.0" />
          </font>
       </Label>
-      <Label fx:id="shipper_address" alignment="TOP_LEFT" layoutX="42.0" layoutY="300.0" prefHeight="69.0" prefWidth="231.0" />
-      <Label fx:id="notify_party_address" alignment="TOP_LEFT" layoutX="289.0" layoutY="300.0" prefHeight="69.0" prefWidth="231.0" />
-      <Label fx:id="consignee_address" alignment="TOP_LEFT" layoutX="540.0" layoutY="298.0" prefHeight="69.0" prefWidth="231.0" />
       <ChoiceBox fx:id="sizeChoiceBox" layoutX="917.0" layoutY="641.0" prefHeight="27.0" prefWidth="136.0" />
+      <TextField fx:id="shipper_address" alignment="TOP_LEFT" layoutX="41.0" layoutY="300.0" prefHeight="69.0" prefWidth="231.0" />
+      <TextField fx:id="notify_party_address" alignment="TOP_LEFT" layoutX="289.0" layoutY="300.0" prefHeight="69.0" prefWidth="231.0" />
+      <TextField fx:id="consignee_address" alignment="TOP_LEFT" layoutX="537.0" layoutY="300.0" prefHeight="69.0" prefWidth="231.0" />
    </children>
 </AnchorPane>

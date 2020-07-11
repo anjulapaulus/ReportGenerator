@@ -19,7 +19,12 @@ import java.util.ResourceBundle;
 public class Company implements Initializable {
     @FXML TextField company_name;
     @FXML TextField telephone_num;
-    @FXML TextArea address;
+    @FXML TextArea address1;
+    @FXML TextArea address2;
+    @FXML TextArea address3;
+    @FXML TextArea address4;
+    @FXML TextArea address5;
+    @FXML TextArea address6;
 
     //Error Labels
     @FXML Label addressErrorLabel;
@@ -35,7 +40,7 @@ public class Company implements Initializable {
         } else {
             companyNameErrorLabel.setText("");
         }
-        if (address.getText().trim().isEmpty()) {
+        if (address1.getText().trim().isEmpty()) {
             addressErrorLabel.setText("* company address field empty");
         } else {
             addressErrorLabel.setText("");
@@ -47,19 +52,29 @@ public class Company implements Initializable {
         }
 
         if (!company_name.getText().trim().isEmpty()
-                && !address.getText().trim().isEmpty()
+                && !address1.getText().trim().isEmpty()
                 && !telephone_num.getText().trim().isEmpty()
         ) {
             if (!companyModel.isExistCompany(company_name.getText())) {
                 boolean check = companyModel.addCompanyDetails(
                         company_name.getText(),
-                        address.getText(),
-                        telephone_num.getText());
+                        address1.getText(),
+                        telephone_num.getText(),
+                        address2.getText(),
+                        address3.getText(),
+                        address4.getText(),
+                        address5.getText(),
+                        address6.getText());
                 if (check) {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "The company details have been inserted", ButtonType.OK);
                     alert.showAndWait();
                     company_name.setText("");
-                    address.setText("");
+                    address1.setText("");
+                    address2.setText("");
+                    address3.setText("");
+                    address4.setText("");
+                    address5.setText("");
+                    address6.setText("");
                     telephone_num.setText("");
                     companyNameErrorLabel.setText("");
                     addressErrorLabel.setText("");
@@ -72,15 +87,24 @@ public class Company implements Initializable {
             } else {
                 boolean check = companyModel.updateCompanyDetails(
                         company_name.getText(),
-                        address.getText(),
-                        telephone_num.getText());
+                        address1.getText(),
+                        telephone_num.getText(),address2.getText(),
+                        address3.getText(),
+                        address4.getText(),
+                        address5.getText(),
+                        address6.getText());
 
                 if (check) {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "The company details have been updated", ButtonType.OK);
                     alert.showAndWait();
                     company_name.setText("");
-                    address.setText("");
+                    address1.setText("");
                     telephone_num.setText("");
+                    address2.setText("");
+                    address3.setText("");
+                    address4.setText("");
+                    address5.setText("");
+                    address6.setText("");
                     companyNameErrorLabel.setText("");
                     addressErrorLabel.setText("");
                     telephone_num.setText("");
@@ -105,11 +129,16 @@ public class Company implements Initializable {
                     Alert alert1 = new Alert(Alert.AlertType.INFORMATION, "Deleted company details ", ButtonType.OK);
                     alert1.showAndWait();
                     company_name.setText("");
-                    address.setText("");
+                    address1.setText("");
                     telephone_num.setText("");
+                    address2.setText("");
+                    address3.setText("");
+                    address4.setText("");
+                    address5.setText("");
+                    address6.setText("");
                     companyNameErrorLabel.setText("");
                     addressErrorLabel.setText("");
-                    telephone_num.setText("");
+                    telephoneNumberErrorLabel.setText("");
                 } else if (result.get() == ButtonType.NO) {
                     hideSource(event);
                 }
@@ -117,8 +146,13 @@ public class Company implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "The company details cannot be deleted", ButtonType.OK);
                 alert.showAndWait();
                 company_name.setText("");
-                address.setText("");
+                address1.setText("");
                 telephone_num.setText("");
+                address2.setText("");
+                address3.setText("");
+                address4.setText("");
+                address5.setText("");
+                address6.setText("");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -139,26 +173,41 @@ public class Company implements Initializable {
                 company_name.textProperty().addListener((observable1, oldValue1, newValue1) -> {
                     if (newValue1.equals("")) {
 //                        company_name.setText("");
-                        address.setText("");
+                        address1.setText("");
                         telephone_num.setText("");
                         companyNameErrorLabel.setText("");
                         addressErrorLabel.setText("");
-                        telephone_num.setText("");
+                        telephoneNumberErrorLabel.setText("");
+                        address2.setText("");
+                        address3.setText("");
+                        address4.setText("");
+                        address5.setText("");
+                        address6.setText("");
                     } else if (companyModel.isExistCompany(newValue1)) {
 //                        System.out.println(referenceTextfield.getText());
                         companyModel.getCompanyDetails(newValue1);
-                        address.setText(CompanyModel.getCompany_address());
+                        address1.setText(CompanyModel.getCompany_address());
                         telephone_num.setText(CompanyModel.getCompany_telephone());
+                        address2.setText(CompanyModel.getCompany_address2());
+                        address3.setText(CompanyModel.getCompany_address3());
+                        address4.setText(CompanyModel.getCompany_address4());
+                        address5.setText(CompanyModel.getCompany_address5());
+                        address6.setText(CompanyModel.getCompany_address6());
                         companyNameErrorLabel.setText("");
                         addressErrorLabel.setText("");
                         telephoneNumberErrorLabel.setText("");
                     }else {
 //                        company_name.setText("");
-                        address.setText("");
+                        address1.setText("");
                         telephone_num.setText("");
+                        address2.setText("");
+                        address3.setText("");
+                        address4.setText("");
+                        address5.setText("");
+                        address6.setText("");
                         companyNameErrorLabel.setText("");
                         addressErrorLabel.setText("");
-                        telephone_num.setText("");
+                        telephoneNumberErrorLabel.setText("");
                     }
                 });
             } catch (Exception e) {
