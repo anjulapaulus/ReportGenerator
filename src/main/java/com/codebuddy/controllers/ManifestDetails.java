@@ -591,8 +591,6 @@ public class ManifestDetails implements Initializable {
             doExpiryErrorLabel.setText("");
         }
 
-        //FIXME: Do check to find containers for reference
-
         if (!referenceTextfield.getText().trim().isEmpty()
                 && !masterShipperTextfield.getText().trim().isEmpty()
                 && !notifyPartyTextfield.getText().trim().isEmpty()
