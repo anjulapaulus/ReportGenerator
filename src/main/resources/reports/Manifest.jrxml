@@ -1,0 +1,685 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Manifest" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4bcce092-c60d-494e-81a3-4a68a26bc44b">
+	<parameter name="datasource1" class="java.util.List"/>
+	<parameter name="referenceNum" class="java.lang.String"/>
+	<parameter name="vessel_voyage" class="java.lang.String"/>
+	<parameter name="eta" class="java.lang.String"/>
+	<parameter name="port_of_loading" class="java.lang.String"/>
+	<parameter name="port_of_discharge" class="java.lang.String"/>
+	<parameter name="serial_number" class="java.lang.String"/>
+	<parameter name="file_num" class="java.lang.String"/>
+	<parameter name="master_shipper" class="java.lang.String"/>
+	<parameter name="agent" class="java.lang.String"/>
+	<parameter name="hbl_num" class="java.lang.String"/>
+	<parameter name="shipper" class="java.lang.String"/>
+	<parameter name="consignee" class="java.lang.String"/>
+	<parameter name="notify_party" class="java.lang.String"/>
+	<parameter name="marks_num" class="java.lang.String"/>
+	<parameter name="description_cargo" class="java.lang.String"/>
+	<parameter name="master_bl_num" class="java.lang.String"/>
+	<parameter name="gross_weight" class="java.lang.String"/>
+	<parameter name="total_cbm" class="java.lang.String"/>
+	<parameter name="total_packages" class="java.lang.String"/>
+	<parameter name="net_weight" class="java.lang.String"/>
+	<parameter name="freight" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="containerNum" class="java.lang.String"/>
+	<field name="sealNum" class="java.lang.String"/>
+	<field name="size" class="java.lang.String"/>
+	<field name="status" class="java.lang.String"/>
+	<field name="packages" class="java.lang.String"/>
+	<field name="containerCBM" class="java.lang.String"/>
+	<background>
+		<band height="50" splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="107" splitType="Stretch">
+			<staticText>
+				<reportElement x="332" y="9" width="139" height="30" uuid="7ca808a1-001e-4e8e-842e-d100163fc573"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="16" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Cargo Manifest]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="62" width="100" height="18" uuid="ca5083ea-10a4-4586-94cd-75b15b8ea6d7">
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+					<paragraph lineSpacingSize="0.0" tabStopWidth="0"/>
+				</textElement>
+				<text><![CDATA[Reference Number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="80" width="100" height="17" uuid="ec68e1bf-4e7d-48c4-b6b5-60b299c2082e">
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+					<paragraph lineSpacingSize="0.0" tabStopWidth="10"/>
+				</textElement>
+				<text><![CDATA[Vessel/Voyage]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="297" y="33" width="208" height="22" uuid="42b5e542-c81d-4af3-9f9f-a74171506b32"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Freight Solutions Lanka Pvt Ltd]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="150" y="62" width="100" height="18" uuid="8f5c3035-3264-493b-963e-65b80e7e1108"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{referenceNum}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="133" y="62" width="10" height="18" uuid="c9db117d-7022-4f82-8747-7c3f48ce1b4d">
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+					<paragraph lineSpacingSize="0.0" tabStopWidth="0"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="133" y="80" width="10" height="16" uuid="a314d347-7495-4500-a292-df61a2006f9d">
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+					<paragraph lineSpacingSize="0.0" tabStopWidth="0"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="150" y="80" width="100" height="17" uuid="851d309d-3d4d-46ea-98b4-ef540ee011b7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{vessel_voyage}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="515" y="62" width="100" height="18" uuid="95226221-ee10-4d0b-bc3d-5fd78fe0d791">
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+					<paragraph lineSpacingSize="0.0" tabStopWidth="0"/>
+				</textElement>
+				<text><![CDATA[File Number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="618" y="62" width="10" height="18" uuid="d8347082-bcdb-4aa3-a2b4-765852475a7d">
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+					<paragraph lineSpacingSize="0.0" tabStopWidth="0"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="515" y="80" width="100" height="18" uuid="664866f2-132f-4d50-9407-d2b7cf3269b4">
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+					<paragraph lineSpacingSize="0.0" tabStopWidth="0"/>
+				</textElement>
+				<text><![CDATA[Agent]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="618" y="80" width="10" height="18" uuid="72631996-9ae2-4cae-a0c4-de4f12e6ba9a">
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+					<paragraph lineSpacingSize="0.0" tabStopWidth="0"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="636" y="62" width="100" height="18" uuid="cf2b01a6-764c-4132-b235-d7de9dc41ecf"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{file_num}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="194" splitType="Stretch">
+			<staticText>
+				<reportElement x="30" y="-10" width="100" height="17" uuid="c10e6114-367a-44d4-89fc-1259aeaf1f0c">
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+					<paragraph lineSpacingSize="0.0" tabStopWidth="10"/>
+				</textElement>
+				<text><![CDATA[ETA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="24" width="100" height="17" uuid="48bf27a1-35b1-45dd-a2fd-d4bcafcf9556">
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+					<paragraph lineSpacingSize="0.0" tabStopWidth="10"/>
+				</textElement>
+				<text><![CDATA[Port of Discharge]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="133" y="-10" width="10" height="17" uuid="48f0ac0f-8463-4c0d-86f4-29799dddf1c0">
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+					<paragraph lineSpacingSize="0.0" tabStopWidth="0"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="133" y="7" width="10" height="17" uuid="4bb9c36b-c41f-4742-9c62-fc891e32e994">
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+					<paragraph lineSpacingSize="0.0" tabStopWidth="0"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="133" y="24" width="10" height="17" uuid="1cafe966-3ebc-4467-9f31-d9de7ceece69">
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+					<paragraph lineSpacingSize="0.0" tabStopWidth="0"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="150" y="-10" width="100" height="17" uuid="e9316784-ee77-4e61-926c-370fcf84d738"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{eta}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="482" y="110" width="140" height="18" uuid="26112ccd-24ab-47a7-a8f0-6b37b8a4a0ef"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MARKS & NUMBERS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="362" y="110" width="120" height="18" uuid="cb294c27-c769-4296-8ad3-ee6f95b056c2"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOTIFY PARTY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="242" y="110" width="120" height="18" uuid="919125f6-1c10-4818-919f-9672ac770063"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONSIGNEE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="122" y="110" width="120" height="18" uuid="4c9a3870-d9fe-475f-b2b1-fcf7e41160ea"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SHIPPER]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="110" width="92" height="18" uuid="cc3701aa-5387-4f97-a811-4fc3e574bbdb"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HBL NUMBER]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="622" y="110" width="137" height="18" uuid="8017f764-e736-42d3-9fbc-d45d9e8c71f3"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIPTION OF CARGO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="122" y="131" width="110" height="59" uuid="04282432-792c-4e81-94f0-f2aa91b9e964"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{shipper}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="242" y="131" width="110" height="59" uuid="1fac46a4-8df2-42b0-a863-8d1c74f7f176"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{consignee}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="30" y="131" width="82" height="59" uuid="6c60b6a7-d165-43b7-8acb-75fdae2efb30"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{hbl_num}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="622" y="131" width="137" height="59" uuid="60f4b5bd-8028-49c1-8459-057d8e68188e"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{description_cargo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="362" y="131" width="110" height="59" uuid="8bc89f3f-8d6b-4918-99fc-6bbde052cbee"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{notify_party}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="482" y="131" width="130" height="59" uuid="8c85b24d-9c34-4e97-8280-89b154738079"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{marks_num}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="7" width="100" height="17" uuid="2c67fed1-238e-43ac-a0c1-3af6166c2c9b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{port_of_loading}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="24" width="100" height="17" uuid="07616af3-21b4-4fd2-bf0a-480ca503789d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{port_of_discharge}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="30" y="7" width="100" height="17" uuid="a0ec3e03-ab46-476c-a1fa-b217b66b0426">
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+					<paragraph lineSpacingSize="0.0" tabStopWidth="10"/>
+				</textElement>
+				<text><![CDATA[Port of Loading]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="41" width="100" height="17" uuid="da1ec9c0-5cdb-4f1d-b226-20743b963023">
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+					<paragraph lineSpacingSize="0.0" tabStopWidth="10"/>
+				</textElement>
+				<text><![CDATA[Serial Number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="133" y="41" width="10" height="17" uuid="a1928713-b5ac-4826-9b8c-8ee1960a7891">
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+					<paragraph lineSpacingSize="0.0" tabStopWidth="0"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="150" y="41" width="100" height="17" uuid="ce5afcad-64e5-4bc6-8983-ef860529a2d9"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{serial_number}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="30" y="58" width="100" height="17" uuid="c382701d-48d8-4b20-8d34-6051c7d40918">
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+					<paragraph lineSpacingSize="0.0" tabStopWidth="10"/>
+				</textElement>
+				<text><![CDATA[Master Shipper]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="133" y="58" width="10" height="17" uuid="8899de3f-9df1-4e6f-b963-14d36b393441">
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+					<paragraph lineSpacingSize="0.0" tabStopWidth="0"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="150" y="58" width="100" height="17" uuid="9a09224b-f4ef-4451-88ef-605bf1ca78e0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{master_shipper}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="636" y="-26" width="156" height="101" uuid="24a6b9d9-35eb-4a4d-80d1-e5e7340e07c2"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{agent}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="133" y="76" width="10" height="17" uuid="06b691b2-f9b9-4454-a7e6-9e7b818d3c20">
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+					<paragraph lineSpacingSize="0.0" tabStopWidth="0"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="76" width="100" height="17" uuid="cdf78b5b-76c6-457b-ad6d-5b5ecf0b42f9">
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+					<paragraph lineSpacingSize="0.0" tabStopWidth="10"/>
+				</textElement>
+				<text><![CDATA[Master BL Number]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="150" y="76" width="100" height="17" uuid="dab5044f-c36d-4d5b-9179-67fc67fbd0e7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{master_bl_num}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="30" y="1" width="110" height="20" uuid="689d7679-2792-4da5-883e-477d5b88ee08">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="027a73ff-135a-4bb3-984f-2e602a791d0e"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONTAINER NUMBER]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="140" y="1" width="100" height="20" uuid="d133823c-24af-40dc-9324-badbcdde7aaf">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ed359859-ae57-4e93-a39c-b9b4b24eefa0"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SEAL NUMBER]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="240" y="1" width="100" height="20" uuid="de83aed1-f6b7-4deb-bf91-1a91805a1de5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d43c5d7d-76a6-4169-94a5-9f591645fdef"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SIZE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="1" width="100" height="20" uuid="5411e6ff-51f7-4886-90d2-f3abeabce7ff">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7b350259-dcd0-4d32-baf9-24e41923a083"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[STATUS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="440" y="1" width="100" height="20" uuid="a3b40ca9-4ae0-49f5-895a-b6eb9390549e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="21425264-e857-49ed-b3fb-fe4082b1e75c"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PACKAGES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="540" y="1" width="100" height="20" uuid="93e1b562-2708-481d-a473-ccef36a23d76">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="904ee317-2bb6-4683-aa0d-fb2197a2a4ea"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CBM]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="14">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField>
+				<reportElement stretchType="ContainerHeight" x="30" y="1" width="110" height="10" uuid="aba0c54a-fa0c-40b9-8342-f5563317a8cd">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="027a73ff-135a-4bb3-984f-2e602a791d0e"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+					<paragraph lineSpacingSize="0.0" tabStopWidth="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{containerNum}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="ContainerHeight" x="140" y="1" width="100" height="10" uuid="fa104e80-5f41-4e8a-90c8-ee9af9cf2c77">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ed359859-ae57-4e93-a39c-b9b4b24eefa0"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+					<paragraph lineSpacingSize="0.0" tabStopWidth="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sealNum}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="ContainerHeight" x="240" y="1" width="100" height="10" uuid="1a62d9a5-dad0-4bb0-a452-39a24545dcfc">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d43c5d7d-76a6-4169-94a5-9f591645fdef"/>
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+					<paragraph lineSpacingSize="0.0" tabStopWidth="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{size}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="ContainerHeight" x="340" y="1" width="100" height="10" uuid="fb80d192-04d1-4d96-85ba-4f4a1152c641">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7b350259-dcd0-4d32-baf9-24e41923a083"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+					<paragraph lineSpacingSize="0.0" tabStopWidth="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="ContainerHeight" x="440" y="1" width="100" height="10" uuid="ae345704-936d-4562-971e-0033658a9c41">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="21425264-e857-49ed-b3fb-fe4082b1e75c"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+					<paragraph lineSpacingSize="0.0" tabStopWidth="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{packages}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="ContainerHeight" x="540" y="1" width="100" height="10" uuid="b7378ed0-eccf-4d4b-b20b-81dd8fd82ea1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="904ee317-2bb6-4683-aa0d-fb2197a2a4ea"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+					<paragraph lineSpacingSize="0.0" tabStopWidth="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{containerCBM}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="100">
+			<staticText>
+				<reportElement x="31" y="0" width="69" height="18" uuid="9788918f-c38d-4172-ab6f-f22fc45e1008">
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+					<paragraph lineSpacingSize="0.0" tabStopWidth="0"/>
+				</textElement>
+				<text><![CDATA[Gross Weight (kg)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="189" y="0" width="70" height="18" uuid="0e582984-afd1-4a74-8d56-f83d6c5aa5c8">
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+					<paragraph lineSpacingSize="0.0" tabStopWidth="0"/>
+				</textElement>
+				<text><![CDATA[Net Weight (kg)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="345" y="0" width="60" height="18" uuid="1fd06946-1250-4ad5-b9db-9bb48cb564bd">
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+					<paragraph lineSpacingSize="0.0" tabStopWidth="0"/>
+				</textElement>
+				<text><![CDATA[CBM (m3)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="495" y="0" width="60" height="18" uuid="83df5c8f-64e7-419b-9cc2-710f7891eba1">
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+					<paragraph lineSpacingSize="0.0" tabStopWidth="0"/>
+				</textElement>
+				<text><![CDATA[Packages]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="102" y="0" width="78" height="18" uuid="82d9eb86-ce4d-4983-9299-b0f4e9e8c77a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{gross_weight}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="259" y="0" width="78" height="18" uuid="c363727a-102b-4379-8ba8-0020674d2890"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{net_weight}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="405" y="0" width="78" height="18" uuid="30b1c1de-b583-41de-8af7-8933b1e1155c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{total_cbm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="555" y="0" width="78" height="18" uuid="7fa23635-134b-4bc4-a800-7d48e1d0ed1d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{total_packages}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="600" y="70" width="180" height="30" uuid="df3cc65c-f09e-4c2c-8180-a808833c30e2"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[Authorized Signatory]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="102" y="25" width="78" height="18" uuid="96ed82b5-339d-4f8c-b899-d30c14ecd301"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{freight}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="31" y="25" width="69" height="18" uuid="5907d40c-18c7-446b-9a60-0d10f37574a4">
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+					<paragraph lineSpacingSize="0.0" tabStopWidth="0"/>
+				</textElement>
+				<text><![CDATA[Freight]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+</jasperReport>

@@ -19,11 +19,6 @@ public class ManifestModel {
     private static String file_number;
     private static String system_reference;
 //    private static String job_reference;
-    private static String vessel_voyage;
-    private static String port_loading;
-    private static String port_discharge;
-    private static String eta;
-    private static String serial_number;
     private static String master_shipper;
     private static String notify_party;
     private static String consignee;
@@ -34,12 +29,10 @@ public class ManifestModel {
     private static String consignee_address;
     private static String description_of_cargo;
     private static String marks_numbers;
-    private static String remarks;
     private static String gross_weight;
     private static String number_packages;
     private static String net_weight;
     private static String package_type;
-    private static String unit;
     private static String do_expiry;
     private static String cbm;
     private static String freight;
@@ -200,39 +193,32 @@ public class ManifestModel {
             }
         }
     }
-    public boolean addManifestDetails(String file_number, String system_reference, String job_reference, String vessel_voyage, String portOfLoading, String portOfDischarge, String eta, String serial_number, String masterShipper,String notify_party, String consignee, String mbl_number, String hbl_number, String shipperAddress, String notify_party_address, String consignee_address, String descriptionOfCargo, String marks_numbers, String remarks, String gross_weight, String number_packages,String net_weight,String package_type,String unit,String do_expiry,String cbm,String freight) throws SQLException {
-        String query = "INSERT INTO manifest_details(file_number, system_reference, job_reference, vessel_voyage, portOfLoading, portOfDischarge, eta, serial_number, masterShipper,notify_party,consignee, mbl_number, hbl_number, shipper_address, notify_party_address, consignee_address, descriptionOfCargo, marks_numbers, remarks, gross_weight, number_packages, net_weight, package_type, unit, do_expiry, cbm, freight)" +
-                " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    public boolean addManifestDetails(String file_number, String system_reference, String job_reference,  String masterShipper,String notify_party, String consignee, String mbl_number, String hbl_number, String shipperAddress, String notify_party_address, String consignee_address, String descriptionOfCargo, String marks_numbers, String gross_weight, String number_packages,String net_weight,String package_type,String do_expiry,String cbm,String freight) throws SQLException {
+        String query = "INSERT INTO manifest_details(file_number, system_reference, job_reference, masterShipper,notify_party,consignee, mbl_number, hbl_number, shipper_address, notify_party_address, consignee_address, descriptionOfCargo, marks_numbers, gross_weight, number_packages, net_weight, package_type,  do_expiry, cbm, freight)" +
+                " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try {
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, file_number);
             preparedStatement.setString(2, system_reference);
             preparedStatement.setString(3, job_reference);
-            preparedStatement.setString(4, vessel_voyage);
-            preparedStatement.setString(5, portOfLoading);
-            preparedStatement.setString(6, portOfDischarge);
-            preparedStatement.setString(7, eta);
-            preparedStatement.setString(8, serial_number);
-            preparedStatement.setString(9, masterShipper);
-            preparedStatement.setString(10, notify_party);
-            preparedStatement.setString(11, consignee);
-            preparedStatement.setString(12, mbl_number);
-            preparedStatement.setString(13, hbl_number);
-            preparedStatement.setString(14, shipperAddress);
-            preparedStatement.setString(15, notify_party_address);
-            preparedStatement.setString(16, consignee_address);
-            preparedStatement.setString(17, descriptionOfCargo);
-            preparedStatement.setString(18, marks_numbers);
-            preparedStatement.setString(19, remarks);
-            preparedStatement.setString(20, gross_weight);
-            preparedStatement.setString(21, number_packages);
-            preparedStatement.setString(22, net_weight);
-            preparedStatement.setString(23, package_type);
-            preparedStatement.setString(24, unit);
-            preparedStatement.setString(25, do_expiry);
-            preparedStatement.setString(26, cbm);
-            preparedStatement.setString(27, freight);
+            preparedStatement.setString(4, masterShipper);
+            preparedStatement.setString(5, notify_party);
+            preparedStatement.setString(6, consignee);
+            preparedStatement.setString(7, mbl_number);
+            preparedStatement.setString(8, hbl_number);
+            preparedStatement.setString(9, shipperAddress);
+            preparedStatement.setString(10, notify_party_address);
+            preparedStatement.setString(11, consignee_address);
+            preparedStatement.setString(12, descriptionOfCargo);
+            preparedStatement.setString(13, marks_numbers);
+            preparedStatement.setString(14, gross_weight);
+            preparedStatement.setString(15, number_packages);
+            preparedStatement.setString(16, net_weight);
+            preparedStatement.setString(17, package_type);
+            preparedStatement.setString(18, do_expiry);
+            preparedStatement.setString(19, cbm);
+            preparedStatement.setString(20, freight);
             int result = preparedStatement.executeUpdate();
             if (result == 1) {
                 return true;
@@ -248,40 +234,33 @@ public class ManifestModel {
         }
     }
 
-    public boolean updateManifestDetails(String job_reference, String vessel_voyage, String portOfLoading, String portOfDischarge, String eta, String serial_number, String masterShipper,String notify_party, String consignee, String mbl_number, String hbl_number, String shipperAddress, String notify_party_address, String consignee_address, String descriptionOfCargo, String marks_numbers, String remarks, String gross_weight, String number_packages,String net_weight,String package_type,String unit,String do_expiry,String cbm,String freight) throws SQLException {
-        String query = "UPDATE manifest_details SET vessel_voyage = ?,portOfLoading  = ?, portOfDischarge = ?, eta = ?, serial_number = ?, masterShipper = ? ,notify_party = ?, consignee = ?," +
+    public boolean updateManifestDetails(String job_reference, String masterShipper,String notify_party, String consignee, String mbl_number, String hbl_number, String shipperAddress, String notify_party_address, String consignee_address, String descriptionOfCargo, String marks_numbers, String gross_weight, String number_packages,String net_weight,String package_type,String do_expiry,String cbm,String freight) throws SQLException {
+        String query = "UPDATE manifest_details SET masterShipper = ? ,notify_party = ?, consignee = ?," +
                 "mbl_number = ?, hbl_number  = ?, shipper_address = ?, notify_party_address = ?, consignee_address = ?, descriptionOfCargo = ?," +
-                "marks_numbers = ?,remarks  = ?, gross_weight = ?, number_packages = ?, net_weight = ?, package_type = ?," +
-                "unit = ?,do_expiry  = ?, cbm = ?, freight = ? " +
+                "marks_numbers = ?,gross_weight = ?, number_packages = ?, net_weight = ?, package_type = ?," +
+                "do_expiry  = ?, cbm = ?, freight = ? " +
                 "WHERE job_reference = ?";
 
         try {
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, vessel_voyage);
-            preparedStatement.setString(2, portOfLoading);
-            preparedStatement.setString(3, portOfDischarge);
-            preparedStatement.setString(4, eta);
-            preparedStatement.setString(5, serial_number);
-            preparedStatement.setString(6, masterShipper);
-            preparedStatement.setString(7, notify_party);
-            preparedStatement.setString(8, consignee);
-            preparedStatement.setString(9, mbl_number);
-            preparedStatement.setString(10, hbl_number);
-            preparedStatement.setString(11, shipperAddress);
-            preparedStatement.setString(12, notify_party_address);
-            preparedStatement.setString(13, consignee_address);
-            preparedStatement.setString(14, descriptionOfCargo);
-            preparedStatement.setString(15, marks_numbers);
-            preparedStatement.setString(16, remarks);
-            preparedStatement.setString(17, gross_weight);
-            preparedStatement.setString(18, number_packages);
-            preparedStatement.setString(19, net_weight);
-            preparedStatement.setString(20, package_type);
-            preparedStatement.setString(21, unit);
-            preparedStatement.setString(22, do_expiry);
-            preparedStatement.setString(23, cbm);
-            preparedStatement.setString(24, freight);
-            preparedStatement.setString(25, job_reference);
+            preparedStatement.setString(1, masterShipper);
+            preparedStatement.setString(2, notify_party);
+            preparedStatement.setString(3, consignee);
+            preparedStatement.setString(4, mbl_number);
+            preparedStatement.setString(5, hbl_number);
+            preparedStatement.setString(6, shipperAddress);
+            preparedStatement.setString(7, notify_party_address);
+            preparedStatement.setString(8, consignee_address);
+            preparedStatement.setString(9, descriptionOfCargo);
+            preparedStatement.setString(10, marks_numbers);
+            preparedStatement.setString(11, gross_weight);
+            preparedStatement.setString(12, number_packages);
+            preparedStatement.setString(13, net_weight);
+            preparedStatement.setString(14, package_type);
+            preparedStatement.setString(15, do_expiry);
+            preparedStatement.setString(16, cbm);
+            preparedStatement.setString(17, freight);
+            preparedStatement.setString(18, job_reference);
             int result = preparedStatement.executeUpdate();
             if (result == 1) {
                 return true;
@@ -326,11 +305,6 @@ public class ManifestModel {
                 file_number = resultSet.getString("file_number");
                 system_reference = resultSet.getString("system_reference");
 //                job_reference = resultSet.getString("job_reference");
-                vessel_voyage = resultSet.getString("vessel_voyage");
-                port_loading = resultSet.getString("portOfLoading");
-                port_discharge = resultSet.getString("portOfDischarge");
-                eta = resultSet.getString("eta");
-                serial_number = resultSet.getString("serial_number");
                 master_shipper = resultSet.getString("masterShipper");
                 notify_party = resultSet.getString("notify_party");
                 consignee = resultSet.getString("consignee");
@@ -341,12 +315,10 @@ public class ManifestModel {
                 consignee_address = resultSet.getString("consignee_address");
                 description_of_cargo = resultSet.getString("descriptionOfCargo");
                 marks_numbers = resultSet.getString("marks_numbers");
-                remarks = resultSet.getString("remarks");
                 gross_weight = resultSet.getString("gross_weight");
                 number_packages = resultSet.getString("number_packages");
                 net_weight = resultSet.getString("net_weight");
                 package_type = resultSet.getString("package_type");
-                unit = resultSet.getString("unit");
                 do_expiry = resultSet.getString("do_expiry");
                 cbm = resultSet.getString("cbm");
                 freight = resultSet.getString("freight");
@@ -705,21 +677,6 @@ public class ManifestModel {
     public static String getSystem_reference(){
         return system_reference;
     }
-    public static String getVessel_voyage(){
-        return vessel_voyage;
-    }
-    public static String getPort_loading(){
-        return port_loading;
-    }
-    public static String getPort_discharge(){
-        return port_discharge;
-    }
-    public static String getEta(){
-        return eta;
-    }
-    public static String getSerial_number(){
-        return serial_number;
-    }
     public static String getMaster_shipper(){
         return master_shipper;
     }
@@ -751,9 +708,6 @@ public class ManifestModel {
     public static String getMarks_numbers(){
         return marks_numbers;
     }
-    public static String getRemarks(){
-        return remarks;
-    }
     public static String getGross_weight(){
         return gross_weight;
     }
@@ -765,9 +719,6 @@ public class ManifestModel {
     }
     public static String getPackage_type(){
         return package_type;
-    }
-    public static String getUnit(){
-        return unit;
     }
     public static String getDo_expiry(){
         return do_expiry;

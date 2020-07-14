@@ -162,7 +162,7 @@ public class CompanyProfile implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if (companyModel.idDBConnected()) {
-            logger.log("INFO", "Company.initialize.Database Connected");
+//            logger.log("INFO", "Company.initialize.Database Connected");
             companyModel.getLatestCompanyDetails();
             companyNameTextField.setText(CompanyProfileModel.getCompany_name());
             companyAddressTextArea.setText(CompanyProfileModel.getCompany_address());
@@ -174,7 +174,7 @@ public class CompanyProfile implements Initializable {
             remarksTextArea.setText(CompanyProfileModel.getRemarks());
 
         } else {
-            logger.log("SEVERE", "Company.initialize.Database not Connected");
+//            logger.log("SEVERE", "Company.initialize.Database not Connected");
         }
     }
 

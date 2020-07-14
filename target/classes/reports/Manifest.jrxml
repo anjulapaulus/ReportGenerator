@@ -22,6 +22,7 @@
 	<parameter name="total_cbm" class="java.lang.String"/>
 	<parameter name="total_packages" class="java.lang.String"/>
 	<parameter name="net_weight" class="java.lang.String"/>
+	<parameter name="freight" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -625,7 +626,7 @@
 				<text><![CDATA[Packages]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="105" y="0" width="78" height="18" uuid="82d9eb86-ce4d-4983-9299-b0f4e9e8c77a"/>
+				<reportElement x="102" y="0" width="78" height="18" uuid="82d9eb86-ce4d-4983-9299-b0f4e9e8c77a"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="8"/>
 				</textElement>
@@ -661,6 +662,23 @@
 					<font fontName="Times New Roman" size="9"/>
 				</textElement>
 				<text><![CDATA[Authorized Signatory]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="102" y="25" width="78" height="18" uuid="96ed82b5-339d-4f8c-b899-d30c14ecd301"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{freight}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="31" y="25" width="69" height="18" uuid="5907d40c-18c7-446b-9a60-0d10f37574a4">
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8"/>
+					<paragraph lineSpacingSize="0.0" tabStopWidth="0"/>
+				</textElement>
+				<text><![CDATA[Freight]]></text>
 			</staticText>
 		</band>
 	</columnFooter>

@@ -36,7 +36,7 @@ public class Home implements Initializable {
         FXMLLoader loader = new FXMLLoader();
         try {
             Pane root = loader.load(getClass().getResource("/views/cargo_details.fxml").openStream());
-            Scene scene = new Scene(root, 820, 850);
+            Scene scene = new Scene(root, 820, 550);
             primaryStage.setTitle("Cargo Maintenance System");
             primaryStage.setResizable(false);
             primaryStage.setScene(scene);
@@ -52,7 +52,7 @@ public class Home implements Initializable {
         FXMLLoader loader = new FXMLLoader();
         try {
             Pane root = loader.load(getClass().getResource("/views/manifest_details.fxml").openStream());
-            Scene scene = new Scene(root, 1300, 900);
+            Scene scene = new Scene(root, 1110, 700);
             primaryStage.setTitle("Cargo Maintenance System");
 //            primaryStage.setResizable(false);
             primaryStage.setScene(scene);

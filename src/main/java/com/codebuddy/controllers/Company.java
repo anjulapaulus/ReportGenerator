@@ -165,7 +165,7 @@ public class Company implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if (companyModel.idDBConnected()) {
-            logger.log("INFO", "Manifest.initialize.Database Connected");
+//            logger.log("INFO", "Manifest.initialize.Database Connected");
             try {
                 List<String> list1 = companyModel.getAllCompanies();
                 TextFields.bindAutoCompletion(company_name, list1);

@@ -1,21 +1,10 @@
 package com.codebuddy;
 
 import com.codebuddy.util.NumberToWordsConverter;
+import com.sun.org.slf4j.internal.LoggerFactory;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.export.JRPrintServiceExporter;
-import net.sf.jasperreports.export.SimpleExporterInput;
-import net.sf.jasperreports.export.SimplePrintServiceExporterConfiguration;
-import net.sf.jasperreports.swing.JRViewer;
 import net.sf.jasperreports.view.JasperViewer;
-
-import javax.print.attribute.HashPrintRequestAttributeSet;
-import javax.print.attribute.HashPrintServiceAttributeSet;
-import javax.print.attribute.PrintRequestAttributeSet;
-import javax.print.attribute.PrintServiceAttributeSet;
-import javax.print.attribute.standard.MediaSizeName;
-import javax.swing.*;
-import java.awt.*;
 import java.io.*;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -25,16 +14,16 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class ReportGenerator {
-    static final String inFile = "./src/main/java/com/codebuddy/reports/Manifest.jrxml";
-
+    LoggerInterface logger = new LoggerInterface();
+//    static final String inFile = "./src/main/java/com/codebuddy/reports/Manifest.jrxml";
     public void GenerateManifestReport(String reference, String vessel_voyage, String eta, String port_of_loading,
                                        String port_of_discharge,String serial_num,String master_shipper,String notify_party,
                                        String consignee,String file_num, String agent_name, String agent_address,String agent_telephone,
                                        String hbl_num,String shipper_address,String notify_party_address,String consigneeAddress,
-                                       String marks_num, String description, String gross_weight, String net_weight,String total_cbm,String total_packages,String mbl_num){
+                                       String marks_num, String description, String gross_weight, String net_weight,String total_cbm,String total_packages,String mbl_num,String freight){
         ContainerBeanList DataBeanList = new ContainerBeanList();
         ArrayList<ContainerBean> dataList = DataBeanList.getDataBeanList(reference);
-        String outFile = reference.replaceAll("/","_")+"_manifest"+".pdf";
+        String outFile = "\\"+reference.replaceAll("/","_")+".pdf";
 
         JRBeanCollectionDataSource beanColDataSource =
                 new JRBeanCollectionDataSource(dataList);
@@ -60,26 +49,24 @@ public class ReportGenerator {
         param.put("net_weight", net_weight);
         param.put("total_cbm", total_cbm);
         param.put("total_packages", total_packages);
+        param.put("freight", freight);
 
         JasperReport jasperDesign = null;
         try {
-            jasperDesign = JasperCompileManager.compileReport(inFile);
+            final InputStream stream = this.getClass().getResourceAsStream("/reports/Manifest.jrxml");
+            jasperDesign = JasperCompileManager.compileReport(stream);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperDesign, param,
                     beanColDataSource);
 
-            File file = new File(outFile);
-            OutputStream outputSteam = new FileOutputStream(file);
-            JasperExportManager.exportReportToPdfStream(jasperPrint, outputSteam);
-            JRViewer jrViewer= new JRViewer(jasperPrint);
-            JFrame jf = new JFrame();
-            jf.getContentPane().add(jrViewer);
-            jf.validate();
-            jf.setVisible(true);
+
+//            JasperExportManager.exportReportToPdfFile(jasperPrint, outFile);
+            JasperViewer.viewReport(jasperPrint, false);
 //            JasperPrintManager.printReport(jasperPrint,true);
 
-            System.out.println("Report Generated!");
-        } catch (JRException | FileNotFoundException e) {
-            e.printStackTrace();
+//            System.out.println("Report Generated!");
+//            logger.log("INFO",String.valueOf("Okay"));
+        } catch (JRException e) {
+            logger.log("ERROR",String.valueOf(e));
         }
 
     }
@@ -88,12 +75,12 @@ public class ReportGenerator {
                            String port_of_discharge,String serial_num,String master_shipper,String notify_party,
                            String consignee,String file_num, String agent_name, String agent_address,String agent_telephone,
                            String hbl_num,String shipper_address,String notify_party_address,String consigneeAddress,
-                           String marks_num, String description, String gross_weight, String net_weight,String total_cbm,String total_packages,String mbl_num,String do_expiry,String package_type
+                           String marks_num, String description, String gross_weight, String net_weight,String total_cbm,String total_packages,String mbl_num,String do_expiry,String package_type,String freight, boolean netWeightCheck
     ){
         ContainerBeanList DataBeanList = new ContainerBeanList();
         ArrayList<ContainerBean> dataList = DataBeanList.getDataBeanList(reference);
-        JRBeanCollectionDataSource beanColDataSource =
-                new JRBeanCollectionDataSource(dataList);
+//        JRBeanCollectionDataSource beanColDataSource =
+//                new JRBeanCollectionDataSource(dataList);
 
         int twenty = 0;
         int fourty = 0;
@@ -125,6 +112,14 @@ public class ReportGenerator {
         param1.put("vessel", vessel);
         param1.put("port_of_loading", port_of_loading);
         param1.put("marks_num", marks_num);
+        param1.put("freight", "FREIGHT "+freight);
+        if (netWeightCheck){
+            param1.put("netWeightLabel","NET WEIGHT");
+            param1.put("net_weight",net_weight);
+        }else {
+            param1.put("netWeightLabel","");
+            param1.put("net_weight","");
+        }
         StringBuilder text = new StringBuilder();
         for (int i = 0; i < dataList.size(); i++) {
             text.append(dataList.get(i).getContainerNum()).append("\n");
@@ -133,7 +128,12 @@ public class ReportGenerator {
         param1.put("package_type", package_type);
         param1.put("description", description);
         param1.put("gross_weight", gross_weight);
-        param1.put("cbm", total_cbm);
+        if (total_cbm.equals("0")){
+            param1.put("cbm", "");
+        }else {
+            param1.put("cbm", total_cbm);
+        }
+
         for (int i = 0; i < dataList.size(); i++) {
             if (dataList.get(i).getSize().equals("20") && dataList.get(i).getStatus().equals("FCL/FCL")){
                 twenty++;
@@ -149,21 +149,22 @@ public class ReportGenerator {
         param1.put("package_figures", total_packages);
         param1.put("packages_in_words", NumberToWordsConverter.convert(Integer.parseInt(total_packages))+" ONLY"); //Have to fix
 
-        final String inFilea = "./src/main/java/com/codebuddy/reports/Delivery_Order.jrxml";
-        String outFilea = reference.replaceAll("/","_")+"_do"+".pdf";
+//        final String inFilea = "./src/main/java/com/codebuddy/reports/Delivery_Order.jrxml";
+        String outFilea = "\\"+reference.replaceAll("/","_")+".pdf";
         JasperReport jasperDesign = null;
         try {
-            jasperDesign = JasperCompileManager.compileReport(inFilea);
+            final InputStream stream = this.getClass().getResourceAsStream("/reports/Delivery_Order.jrxml");
+            jasperDesign = JasperCompileManager.compileReport(stream);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperDesign,param1,new JREmptyDataSource());
 
-            File file = new File(outFilea);
-            OutputStream outputSteam = new FileOutputStream(file);
-            JasperExportManager.exportReportToPdfStream(jasperPrint, outputSteam);
+//            File file = new File(outFilea);
+//            OutputStream outputSteam = new FileOutputStream(file);
+//            JasperExportManager.exportReportToPdfFile(jasperPrint, outFilea);
+            JasperViewer.viewReport(jasperPrint, false);
 
-
-            System.out.println("Report Generated!");
-        } catch (JRException | FileNotFoundException e) {
-            e.printStackTrace();
+//            System.out.println("Report Generated!");
+        } catch (JRException e) {
+            logger.log("ERROR",String.valueOf(e));
         }
     }
 

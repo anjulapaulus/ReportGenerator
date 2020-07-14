@@ -51,7 +51,7 @@ public class Login implements Initializable {
             errorPasswordLabel.setText("");
             try {
                 String role = loginModel.login(emailField.getText(),passwordField.getText());
-                if (role != null && role.equals("admin")){
+                if (role != null && role.equals("user")){
                     ((Node)event.getSource()).getScene().getWindow().hide();
                     Stage primaryStage = new Stage();
                     FXMLLoader loader = new FXMLLoader();
@@ -66,9 +66,21 @@ public class Login implements Initializable {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                }else if (role != null && role.equals("user")){
-                    //FIXME: Admin Home
-                    errorPasswordLabel.setText("hari ela");
+                }else if (role != null && role.equals("admin")){
+                    ((Node)event.getSource()).getScene().getWindow().hide();
+                    Stage primaryStage = new Stage();
+                    FXMLLoader loader = new FXMLLoader();
+                    try {
+                        Pane root = loader.load(getClass().getResource("/views/admin_home.fxml").openStream());
+                        Scene scene = new Scene(root, 600, 400);
+                        primaryStage.setTitle("Cargo Maintenance System");
+                        primaryStage.setResizable(false);
+                        primaryStage.setScene(scene);
+                        primaryStage.show();
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }else {
                     errorPasswordLabel.setText("Username and password incorrect");
                 }
@@ -87,9 +99,9 @@ public class Login implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if (loginModel.idDBConnected()){
-            logger.log("INFO","Login.initialize.Database Connected");
+//            logger.log("INFO","Login.initialize.Database Connected");
         }else {
-            logger.log("SEVERE","Login.initialize.Database not Connected");
+//            logger.log("SEVERE","Login.initialize.Database not Connected");
         }
     }
 }

@@ -38,10 +38,6 @@ public class ManifestDetails implements Initializable {
     @FXML
     TextField referenceTextfield;
     @FXML
-    TextField vesselVoyageTextfield;
-    @FXML
-    TextField portOfDischargeTextfield;
-    @FXML
     TextField mblTextField;
     @FXML
     TextField masterShipperTextfield;
@@ -50,25 +46,17 @@ public class ManifestDetails implements Initializable {
     @FXML
     TextField consigneeTextfield;
     @FXML
-    TextField portOfLoadingTextfield;
-    @FXML
-    TextField serialNumberTextfield;
-    @FXML
     TextField hblNumberTextfield;
     @FXML
-    DatePicker etaPicker;
+    ComboBox<String> shipper_address;
     @FXML
-    TextField shipper_address;
+    ComboBox<String> notify_party_address;
     @FXML
-    TextField notify_party_address;
-    @FXML
-    TextField consignee_address;
+    ComboBox<String> consignee_address;
     @FXML
     TextArea descriptionTextArea;
     @FXML
     TextArea marksTextArea;
-    @FXML
-    TextArea remarksTextarea;
     @FXML
     TextField grossWeightTextField;
     @FXML
@@ -78,13 +66,13 @@ public class ManifestDetails implements Initializable {
     @FXML
     TextField packageTypeTextfield;
     @FXML
-    TextField unitTextfield;
-    @FXML
     TextField cbmTextfield;
     @FXML
-    TextField freightTextfield;
+    ComboBox<String> freightTextfield;
     @FXML
     DatePicker doExpiryPicker;
+    @FXML
+    CheckBox netWeightChoiceBox;
     //Labels
     @FXML
     Label referenceLabel;
@@ -95,8 +83,6 @@ public class ManifestDetails implements Initializable {
     @FXML
     Label doExpiryErrorLabel;
     @FXML
-    Label unitErrorLabel;
-    @FXML
     Label packageTypeErrorLabel;
     @FXML
     Label netWeightErrorLabel;
@@ -104,8 +90,6 @@ public class ManifestDetails implements Initializable {
     Label numberOfPackagesErrorLabel;
     @FXML
     Label grossWeightErrorLabel;
-    @FXML
-    Label remarksErrorLabel;
     @FXML
     Label descriptionErroLabel;
     @FXML
@@ -119,17 +103,8 @@ public class ManifestDetails implements Initializable {
     @FXML
     Label masterShipperErrorLabel;
     @FXML
-    Label serialNumberErrorLabel;
-    @FXML
-    Label etaErrorLabel;
-    @FXML
     Label marksErrorLabel;
-    @FXML
-    Label vesselVoyageErrorLabel;
-    @FXML
-    Label portOfLoadingErrorLabel;
-    @FXML
-    Label portOfDischargeErrorLabel;
+
 
 
     //Container Details
@@ -138,7 +113,7 @@ public class ManifestDetails implements Initializable {
     @FXML
     TextField sealNumTextfield;
     @FXML
-    ChoiceBox sizeChoiceBox;
+    ChoiceBox<String> sizeChoiceBox;
     @FXML
     TextField statusTextfield;
     @FXML
@@ -185,7 +160,7 @@ public class ManifestDetails implements Initializable {
     private final String pattern = "yyyy-MM-dd";
     final BooleanProperty firstTime = new SimpleBooleanProperty(true);
 
-    StringConverter converter = new StringConverter<LocalDate>() {
+    StringConverter<LocalDate> converter = new StringConverter<LocalDate>() {
         DateTimeFormatter dateFormatter =
                 DateTimeFormatter.ofPattern(pattern);
 
@@ -322,31 +297,7 @@ public class ManifestDetails implements Initializable {
         } else {
             referenceLabel.setText("");
         }
-        if (vesselVoyageTextfield.getText().trim().isEmpty()) {
-            vesselVoyageErrorLabel.setText("* vessel voyage field empty");
-        } else {
-            vesselVoyageErrorLabel.setText("");
-        }
-        if (portOfLoadingTextfield.getText().trim().isEmpty()) {
-            portOfLoadingErrorLabel.setText("* port of loading field empty");
-        } else {
-            portOfLoadingErrorLabel.setText("");
-        }
-        if (portOfDischargeTextfield.getText().trim().isEmpty()) {
-            portOfDischargeErrorLabel.setText("* port of discharge field empty");
-        } else {
-            portOfDischargeErrorLabel.setText("");
-        }
-        if (etaPicker.getValue() == null) {
-            etaErrorLabel.setText("* eta field empty");
-        } else {
-            etaErrorLabel.setText("");
-        }
-        if (serialNumberTextfield.getText().trim().isEmpty()) {
-            serialNumberErrorLabel.setText("* serial number field empty");
-        } else {
-            serialNumberErrorLabel.setText("");
-        }
+
         if (mblTextField.getText().trim().isEmpty()) {
             mblNumberErrorLabel.setText("* mbl number field empty");
         } else {
@@ -383,25 +334,15 @@ public class ManifestDetails implements Initializable {
         } else {
             marksErrorLabel.setText("");
         }
-        if (remarksTextarea.getText().trim().isEmpty()) {
-            remarksErrorLabel.setText("* remarks field empty");
-        } else {
-            remarksErrorLabel.setText("");
-        }
         if (grossWeightTextField.getText().trim().isEmpty()) {
-            grossWeightErrorLabel.setText("* gross weight field empty");
+            grossWeightErrorLabel.setText("* field empty");
         } else {
             grossWeightErrorLabel.setText("");
         }
         if (netWeightTextfield.getText().trim().isEmpty()) {
-            netWeightErrorLabel.setText("* net weight field empty");
+            netWeightErrorLabel.setText("* field empty");
         } else {
             netWeightErrorLabel.setText("");
-        }
-        if (unitTextfield.getText().trim().isEmpty()) {
-            unitErrorLabel.setText("* unit field empty");
-        } else {
-            unitErrorLabel.setText("");
         }
         if (cbmTextfield.getText().trim().isEmpty()) {
             cbmErrorLabel.setText("* cbm field empty");
@@ -418,11 +359,6 @@ public class ManifestDetails implements Initializable {
         } else {
             packageTypeErrorLabel.setText("");
         }
-        if (freightTextfield.getText().trim().isEmpty()) {
-            freightErrorLabel.setText("* freight field empty");
-        } else {
-            freightErrorLabel.setText("");
-        }
 
         if (doExpiryPicker.getValue() == null) {
             doExpiryErrorLabel.setText("* d/o expiry field empty");
@@ -433,11 +369,6 @@ public class ManifestDetails implements Initializable {
         //FIXME: Do check to find containers for reference
 
         if (!referenceTextfield.getText().trim().isEmpty()
-                && !vesselVoyageTextfield.getText().trim().isEmpty()
-                && !portOfLoadingTextfield.getText().trim().isEmpty()
-                && !portOfDischargeTextfield.getText().trim().isEmpty()
-                && etaPicker.getValue() != null
-                && !serialNumberTextfield.getText().trim().isEmpty()
                 && !masterShipperTextfield.getText().trim().isEmpty()
                 && !notifyPartyTextfield.getText().trim().isEmpty()
                 && !consigneeTextfield.getText().trim().isEmpty()
@@ -445,14 +376,11 @@ public class ManifestDetails implements Initializable {
                 && !hblNumberTextfield.getText().trim().isEmpty()
                 && !descriptionTextArea.getText().trim().isEmpty()
                 && !marksTextArea.getText().trim().isEmpty()
-                && !remarksTextarea.getText().trim().isEmpty()
                 && !grossWeightTextField.getText().trim().isEmpty()
                 && !netWeightTextfield.getText().trim().isEmpty()
-                && !unitTextfield.getText().trim().isEmpty()
                 && !cbmTextfield.getText().trim().isEmpty()
                 && !numberOfPackagesTextfield.getText().trim().isEmpty()
                 && !packageTypeTextfield.getText().trim().isEmpty()
-                && !freightTextfield.getText().trim().isEmpty()
                 && doExpiryPicker.getValue() != null
         ) {
             if (!manifestModel.isManifestDetailsExist(referenceTextfield.getText())) {
@@ -461,30 +389,23 @@ public class ManifestDetails implements Initializable {
                             fileNumberLabel.getText(),
                             systemReferenceLabel.getText(),
                             referenceTextfield.getText(),
-                            vesselVoyageTextfield.getText(),
-                            portOfLoadingTextfield.getText(),
-                            portOfDischargeTextfield.getText(),
-                            etaPicker.getValue().toString(),
-                            serialNumberTextfield.getText(),
                             masterShipperTextfield.getText(),
                             notifyPartyTextfield.getText(),
                             consigneeTextfield.getText(),
                             mblTextField.getText(),
                             hblNumberTextfield.getText(),
-                            shipper_address.getText(),
-                            notify_party_address.getText(),
-                            consignee_address.getText(),
+                            shipper_address.getValue().toString(),
+                            notify_party_address.getValue().toString(),
+                            consignee_address.getValue().toString(),
                             descriptionTextArea.getText(),
                             marksTextArea.getText(),
-                            remarksTextarea.getText(),
                             grossWeightTextField.getText(),
                             numberOfPackagesTextfield.getText(),
                             netWeightTextfield.getText(),
                             packageTypeTextfield.getText(),
-                            unitTextfield.getText(),
                             doExpiryPicker.getValue().toString(),
                             cbmTextfield.getText(),
-                            freightTextfield.getText()
+                            freightTextfield.getValue().toString()
                     );
                     if (check) {
                         Alert alert = new Alert(Alert.AlertType.INFORMATION, "The manifest details have been inserted", ButtonType.OK);
@@ -501,30 +422,23 @@ public class ManifestDetails implements Initializable {
                 try {
                     boolean check = manifestModel.updateManifestDetails(
                             referenceTextfield.getText(),
-                            vesselVoyageTextfield.getText(),
-                            portOfLoadingTextfield.getText(),
-                            portOfDischargeTextfield.getText(),
-                            etaPicker.getValue().toString(),
-                            serialNumberTextfield.getText(),
                             masterShipperTextfield.getText(),
                             notifyPartyTextfield.getText(),
                             consigneeTextfield.getText(),
                             mblTextField.getText(),
                             hblNumberTextfield.getText(),
-                            shipper_address.getText(),
-                            notify_party_address.getText(),
-                            consignee_address.getText(),
+                            shipper_address.getValue().toString(),
+                            notify_party_address.getValue().toString(),
+                            consignee_address.getValue().toString(),
                             descriptionTextArea.getText(),
                             marksTextArea.getText(),
-                            remarksTextarea.getText(),
                             grossWeightTextField.getText(),
                             numberOfPackagesTextfield.getText(),
                             netWeightTextfield.getText(),
                             packageTypeTextfield.getText(),
-                            unitTextfield.getText(),
                             doExpiryPicker.getValue().toString(),
                             cbmTextfield.getText(),
-                            freightTextfield.getText()
+                            freightTextfield.getValue().toString()
                     );
                     if (check) {
                         Alert alert = new Alert(Alert.AlertType.INFORMATION, "The manifests details have been updated", ButtonType.OK);
@@ -606,31 +520,7 @@ public class ManifestDetails implements Initializable {
         } else {
             referenceLabel.setText("");
         }
-        if (vesselVoyageTextfield.getText().trim().isEmpty()) {
-            vesselVoyageErrorLabel.setText("* vessel voyage field empty");
-        } else {
-            vesselVoyageErrorLabel.setText("");
-        }
-        if (portOfLoadingTextfield.getText().trim().isEmpty()) {
-            portOfLoadingErrorLabel.setText("* port of loading field empty");
-        } else {
-            portOfLoadingErrorLabel.setText("");
-        }
-        if (portOfDischargeTextfield.getText().trim().isEmpty()) {
-            portOfDischargeErrorLabel.setText("* port of discharge field empty");
-        } else {
-            portOfDischargeErrorLabel.setText("");
-        }
-        if (etaPicker.getValue() == null) {
-            etaErrorLabel.setText("* eta field empty");
-        } else {
-            etaErrorLabel.setText("");
-        }
-        if (serialNumberTextfield.getText().trim().isEmpty()) {
-            serialNumberErrorLabel.setText("* serial number field empty");
-        } else {
-            serialNumberErrorLabel.setText("");
-        }
+
         if (mblTextField.getText().trim().isEmpty()) {
             mblNumberErrorLabel.setText("* mbl number field empty");
         } else {
@@ -667,26 +557,18 @@ public class ManifestDetails implements Initializable {
         } else {
             marksErrorLabel.setText("");
         }
-        if (remarksTextarea.getText().trim().isEmpty()) {
-            remarksErrorLabel.setText("* remarks field empty");
-        } else {
-            remarksErrorLabel.setText("");
-        }
+
         if (grossWeightTextField.getText().trim().isEmpty()) {
-            grossWeightErrorLabel.setText("* gross weight field empty");
+            grossWeightErrorLabel.setText("* field empty");
         } else {
             grossWeightErrorLabel.setText("");
         }
         if (netWeightTextfield.getText().trim().isEmpty()) {
-            netWeightErrorLabel.setText("* net weight field empty");
+            netWeightErrorLabel.setText("* field empty");
         } else {
             netWeightErrorLabel.setText("");
         }
-        if (unitTextfield.getText().trim().isEmpty()) {
-            unitErrorLabel.setText("* unit field empty");
-        } else {
-            unitErrorLabel.setText("");
-        }
+
         if (cbmTextfield.getText().trim().isEmpty()) {
             cbmErrorLabel.setText("* cbm field empty");
         } else {
@@ -702,11 +584,6 @@ public class ManifestDetails implements Initializable {
         } else {
             packageTypeErrorLabel.setText("");
         }
-        if (freightTextfield.getText().trim().isEmpty()) {
-            freightErrorLabel.setText("* freight field empty");
-        } else {
-            freightErrorLabel.setText("");
-        }
 
         if (doExpiryPicker.getValue() == null) {
             doExpiryErrorLabel.setText("* d/o expiry field empty");
@@ -717,11 +594,6 @@ public class ManifestDetails implements Initializable {
         //FIXME: Do check to find containers for reference
 
         if (!referenceTextfield.getText().trim().isEmpty()
-                && !vesselVoyageTextfield.getText().trim().isEmpty()
-                && !portOfLoadingTextfield.getText().trim().isEmpty()
-                && !portOfDischargeTextfield.getText().trim().isEmpty()
-                && etaPicker.getValue() != null
-                && !serialNumberTextfield.getText().trim().isEmpty()
                 && !masterShipperTextfield.getText().trim().isEmpty()
                 && !notifyPartyTextfield.getText().trim().isEmpty()
                 && !consigneeTextfield.getText().trim().isEmpty()
@@ -729,26 +601,25 @@ public class ManifestDetails implements Initializable {
                 && !hblNumberTextfield.getText().trim().isEmpty()
                 && !descriptionTextArea.getText().trim().isEmpty()
                 && !marksTextArea.getText().trim().isEmpty()
-                && !remarksTextarea.getText().trim().isEmpty()
                 && !grossWeightTextField.getText().trim().isEmpty()
                 && !netWeightTextfield.getText().trim().isEmpty()
-                && !unitTextfield.getText().trim().isEmpty()
                 && !cbmTextfield.getText().trim().isEmpty()
                 && !numberOfPackagesTextfield.getText().trim().isEmpty()
                 && !packageTypeTextfield.getText().trim().isEmpty()
-                && !freightTextfield.getText().trim().isEmpty()
                 && doExpiryPicker.getValue() != null
         ) {
             CompanyProfileModel companyProfileModel = new CompanyProfileModel();
             companyProfileModel.getLatestCompanyDetails();
             ReportGenerator reportGenerator = new ReportGenerator();
+            CargoDetailsModel.getCargoDetails(referenceTextfield.getText());
+            LocalDate dateEta = converter.fromString(CargoDetailsModel.getDue_on());
             reportGenerator.GenerateManifestReport(
                     referenceTextfield.getText(),
-                    vesselVoyageTextfield.getText(),
-                    etaPicker.getValue().toString(),
-                    portOfLoadingTextfield.getText(),
-                    portOfDischargeTextfield.getText(),
-                    serialNumberTextfield.getText(),
+                    CargoDetailsModel.getVessel() + " " + CargoDetailsModel.getVoyage(),
+                    dateEta.toString(),
+                    CargoDetailsModel.getPort_loading(),
+                    CargoDetailsModel.getPort_discharge(),
+                    CargoDetailsModel.getSerial_number(),
                     masterShipperTextfield.getText(),
                     notifyPartyTextfield.getText(),
                     consigneeTextfield.getText(),
@@ -757,16 +628,17 @@ public class ManifestDetails implements Initializable {
                     companyProfileModel.getCompany_address(),
                     companyProfileModel.getTelephone(),
                     hblNumberTextfield.getText(),
-                    shipper_address.getText(),
-                    notify_party_address.getText(),
-                    consignee_address.getText(),
+                    shipper_address.getValue(),
+                    notify_party_address.getValue(),
+                    consignee_address.getValue(),
                     marksTextArea.getText(),
                     descriptionTextArea.getText(),
                     grossWeightTextField.getText(),
                     netWeightTextfield.getText(),
                     cbmTextfield.getText(),
                     numberOfPackagesTextfield.getText(),
-                    mblTextField.getText()
+                    mblTextField.getText(),
+                    freightTextfield.getValue()
             );
         }
     }
@@ -777,31 +649,7 @@ public class ManifestDetails implements Initializable {
         } else {
             referenceLabel.setText("");
         }
-        if (vesselVoyageTextfield.getText().trim().isEmpty()) {
-            vesselVoyageErrorLabel.setText("* vessel voyage field empty");
-        } else {
-            vesselVoyageErrorLabel.setText("");
-        }
-        if (portOfLoadingTextfield.getText().trim().isEmpty()) {
-            portOfLoadingErrorLabel.setText("* port of loading field empty");
-        } else {
-            portOfLoadingErrorLabel.setText("");
-        }
-        if (portOfDischargeTextfield.getText().trim().isEmpty()) {
-            portOfDischargeErrorLabel.setText("* port of discharge field empty");
-        } else {
-            portOfDischargeErrorLabel.setText("");
-        }
-        if (etaPicker.getValue() == null) {
-            etaErrorLabel.setText("* eta field empty");
-        } else {
-            etaErrorLabel.setText("");
-        }
-        if (serialNumberTextfield.getText().trim().isEmpty()) {
-            serialNumberErrorLabel.setText("* serial number field empty");
-        } else {
-            serialNumberErrorLabel.setText("");
-        }
+
         if (mblTextField.getText().trim().isEmpty()) {
             mblNumberErrorLabel.setText("* mbl number field empty");
         } else {
@@ -838,28 +686,18 @@ public class ManifestDetails implements Initializable {
         } else {
             marksErrorLabel.setText("");
         }
-        if (remarksTextarea.getText().trim().isEmpty()) {
-            remarksErrorLabel.setText("* remarks field empty");
-        } else {
-            remarksErrorLabel.setText("");
-        }
         if (grossWeightTextField.getText().trim().isEmpty()) {
-            grossWeightErrorLabel.setText("* gross weight field empty");
+            grossWeightErrorLabel.setText("* field empty");
         } else {
             grossWeightErrorLabel.setText("");
         }
         if (netWeightTextfield.getText().trim().isEmpty()) {
-            netWeightErrorLabel.setText("* net weight field empty");
+            netWeightErrorLabel.setText("* field empty");
         } else {
             netWeightErrorLabel.setText("");
         }
-        if (unitTextfield.getText().trim().isEmpty()) {
-            unitErrorLabel.setText("* unit field empty");
-        } else {
-            unitErrorLabel.setText("");
-        }
         if (cbmTextfield.getText().trim().isEmpty()) {
-            cbmErrorLabel.setText("* cbm field empty");
+            cbmErrorLabel.setText("* field empty");
         } else {
             cbmErrorLabel.setText("");
         }
@@ -873,12 +711,6 @@ public class ManifestDetails implements Initializable {
         } else {
             packageTypeErrorLabel.setText("");
         }
-        if (freightTextfield.getText().trim().isEmpty()) {
-            freightErrorLabel.setText("* freight field empty");
-        } else {
-            freightErrorLabel.setText("");
-        }
-
         if (doExpiryPicker.getValue() == null) {
             doExpiryErrorLabel.setText("* d/o expiry field empty");
         } else {
@@ -888,11 +720,6 @@ public class ManifestDetails implements Initializable {
         //FIXME: Do check to find containers for reference
 
         if (!referenceTextfield.getText().trim().isEmpty()
-                && !vesselVoyageTextfield.getText().trim().isEmpty()
-                && !portOfLoadingTextfield.getText().trim().isEmpty()
-                && !portOfDischargeTextfield.getText().trim().isEmpty()
-                && etaPicker.getValue() != null
-                && !serialNumberTextfield.getText().trim().isEmpty()
                 && !masterShipperTextfield.getText().trim().isEmpty()
                 && !notifyPartyTextfield.getText().trim().isEmpty()
                 && !consigneeTextfield.getText().trim().isEmpty()
@@ -900,40 +727,39 @@ public class ManifestDetails implements Initializable {
                 && !hblNumberTextfield.getText().trim().isEmpty()
                 && !descriptionTextArea.getText().trim().isEmpty()
                 && !marksTextArea.getText().trim().isEmpty()
-                && !remarksTextarea.getText().trim().isEmpty()
                 && !grossWeightTextField.getText().trim().isEmpty()
                 && !netWeightTextfield.getText().trim().isEmpty()
-                && !unitTextfield.getText().trim().isEmpty()
                 && !cbmTextfield.getText().trim().isEmpty()
                 && !numberOfPackagesTextfield.getText().trim().isEmpty()
                 && !packageTypeTextfield.getText().trim().isEmpty()
-                && !freightTextfield.getText().trim().isEmpty()
                 && doExpiryPicker.getValue() != null
         ) {
+            CompanyModel companyModel = new CompanyModel();
             CompanyProfileModel companyProfileModel = new CompanyProfileModel();
-            companyProfileModel.getLatestCompanyDetails();
+            CompanyProfileModel.getLatestCompanyDetails();
             CargoDetailsModel.getCargoDetails(referenceTextfield.getText());
-            vesselVoyageTextfield.setText(CargoDetailsModel.getVessel() + " " + CargoDetailsModel.getVoyage());
             ReportGenerator reportGenerator = new ReportGenerator();
+            LocalDate dateEta = converter.fromString(CargoDetailsModel.getDue_on());
+            boolean isSelected = netWeightChoiceBox.isSelected();
             reportGenerator.GenerateDO(
                     referenceTextfield.getText(),
                     CargoDetailsModel.getVessel(),
                     CargoDetailsModel.getVoyage(),
-                    etaPicker.getValue().toString(),
-                    portOfLoadingTextfield.getText(),
-                    portOfDischargeTextfield.getText(),
-                    serialNumberTextfield.getText(),
+                    dateEta.toString(),
+                    CargoDetailsModel.getPort_loading(),
+                    CargoDetailsModel.getPort_discharge(),
+                    CargoDetailsModel.getSerial_number(),
                     masterShipperTextfield.getText(),
                     notifyPartyTextfield.getText(),
                     consigneeTextfield.getText(),
                     fileNumberLabel.getText(),
-                    companyProfileModel.getCompany_name(),
-                    companyProfileModel.getCompany_address(),
-                    companyProfileModel.getTelephone(),
+                    CompanyProfileModel.getCompany_name(),
+                    CompanyProfileModel.getCompany_address(),
+                    CompanyProfileModel.getTelephone(),
                     hblNumberTextfield.getText(),
-                    shipper_address.getText(),
-                    notify_party_address.getText(),
-                    consignee_address.getText(),
+                    shipper_address.getValue(),
+                    notify_party_address.getValue(),
+                    consignee_address.getValue(),
                     marksTextArea.getText(),
                     descriptionTextArea.getText(),
                     grossWeightTextField.getText(),
@@ -942,7 +768,9 @@ public class ManifestDetails implements Initializable {
                     numberOfPackagesTextfield.getText(),
                     mblTextField.getText(),
                     doExpiryPicker.getValue().toString(),
-                    packageTypeTextfield.getText()
+                    packageTypeTextfield.getText(),
+                    freightTextfield.getValue().toString(),
+                    isSelected
             );
         }
     }
@@ -987,7 +815,7 @@ public class ManifestDetails implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         if (manifestModel.idDBConnected()) {
             connection = manifestModel.connection();
-            logger.log("INFO", "Manifest.initialize.Database Connected");
+//            logger.log("INFO", "Manifest.initialize.Database Connected");
             try {
                 List<String> list1 = companyModel.getAllCompanies();
                 TextFields.bindAutoCompletion(masterShipperTextfield, list1);
@@ -995,6 +823,7 @@ public class ManifestDetails implements Initializable {
                 TextFields.bindAutoCompletion(consigneeTextfield, list1);
                 List<String> list2 = manifestModel.getAllManifests();
                 TextFields.bindAutoCompletion(referenceTextfield, list2);
+                container_table.clear();
                 fileNumberLabel.setText(manifestModel.getFileNumber());
                 systemReferenceLabel.setText(systemReference());
                 containerNumber.setCellValueFactory(new PropertyValueFactory<>("ContainerNumber"));
@@ -1005,6 +834,8 @@ public class ManifestDetails implements Initializable {
                 cbmL.setCellValueFactory(new PropertyValueFactory<>("Cbm"));
                 sizeChoiceBox.getItems().addAll("20", "40", "OVER 40");
                 sizeChoiceBox.setValue("20");
+                freightTextfield.getItems().addAll("PREPAID", "COLLECT");
+                freightTextfield.setValue("PREPAID");
                 referenceTextfield.textProperty().addListener((observable, oldValue, newValue) -> {
                     List<String> list3 = manifestModel.getAllContainers(newValue);
                     TextFields.bindAutoCompletion(containerNumTextfield, list3);
@@ -1019,32 +850,23 @@ public class ManifestDetails implements Initializable {
                         manifestModel.getManifestDetails(newValue);
                         fileNumberLabel.setText(ManifestModel.getFile_number());
                         systemReferenceLabel.setText(ManifestModel.getSystem_reference());
-                        vesselVoyageTextfield.setText(ManifestModel.getVessel_voyage());
-                        portOfDischargeTextfield.setText(ManifestModel.getPort_discharge());
                         mblTextField.setText(ManifestModel.getMbl_number());
                         masterShipperTextfield.setText(ManifestModel.getMaster_shipper());
                         notifyPartyTextfield.setText(ManifestModel.getNotify_party());
                         consigneeTextfield.setText(ManifestModel.getConsignee());
-                        portOfLoadingTextfield.setText(ManifestModel.getPort_loading());
-                        serialNumberTextfield.setText(ManifestModel.getSerial_number());
                         hblNumberTextfield.setText(ManifestModel.getHbl_number());
-                        LocalDate dateEta = (LocalDate) converter.fromString(ManifestModel.getEta());
-                        etaPicker.setConverter(converter);
-                        etaPicker.setValue(dateEta);
-                        shipper_address.setText(ManifestModel.getShipperAddress());
-                        notify_party_address.setText(ManifestModel.getNotify_address());
-                        consignee_address.setText(ManifestModel.getConsignee_address());
+                        shipper_address.setValue(ManifestModel.getShipperAddress());
+                        notify_party_address.setValue(ManifestModel.getNotify_address());
+                        consignee_address.setValue(ManifestModel.getConsignee_address());
                         descriptionTextArea.setText(ManifestModel.getDescription_of_cargo());
                         marksTextArea.setText(ManifestModel.getMarks_numbers());
-                        remarksTextarea.setText(ManifestModel.getRemarks());
                         grossWeightTextField.setText(ManifestModel.getGross_weight());
                         numberOfPackagesTextfield.setText(ManifestModel.getNumber_packages());
                         netWeightTextfield.setText(ManifestModel.getNet_weight());
                         packageTypeTextfield.setText(ManifestModel.getPackage_type());
-                        unitTextfield.setText(ManifestModel.getUnit());
                         cbmTextfield.setText(ManifestModel.getCbm());
-                        freightTextfield.setText(ManifestModel.getFreight());
-                        LocalDate doExpiry = (LocalDate) converter.fromString(ManifestModel.getDo_expiry());
+                        freightTextfield.setValue(ManifestModel.getFreight());
+                        LocalDate doExpiry = converter.fromString(ManifestModel.getDo_expiry());
                         doExpiryPicker.setConverter(converter);
                         doExpiryPicker.setValue(doExpiry);
                         containerTableView.getItems().clear();
@@ -1053,13 +875,6 @@ public class ManifestDetails implements Initializable {
                         containerTableView.setItems(container_table);
                     } else if (cargoDetailsModel.isExistCargoDetails(newValue)) {
                         CargoDetailsModel.getCargoDetails(newValue);
-                        vesselVoyageTextfield.setText(CargoDetailsModel.getVessel() + " " + CargoDetailsModel.getVoyage());
-                        portOfDischargeTextfield.setText(CargoDetailsModel.getPort_discharge());
-                        portOfLoadingTextfield.setText(CargoDetailsModel.getPort_loading());
-                        serialNumberTextfield.setText(CargoDetailsModel.getSerial_number());
-                        LocalDate dateEta = (LocalDate) converter.fromString(CargoDetailsModel.getDue_on());
-                        etaPicker.setConverter(converter);
-                        etaPicker.setValue(dateEta);
                         containerTableView.getItems().clear();
                         containerTableView.refresh();
                         updateTable(newValue, connection);
@@ -1100,37 +915,40 @@ public class ManifestDetails implements Initializable {
                 });
                 masterShipperTextfield.textProperty().addListener((observable1, oldValue1, newValue1) -> {
                     if (newValue1.equals("")) {
-                        shipper_address.setText("");
+                        shipper_address.setValue("");
                     }else if (companyModel.isExistCompany(newValue1)) {
 //                        System.out.println(referenceTextfield.getText());
                         List<String> address1 = companyModel.getAllCompaniesAddresses(newValue1);
-                        TextFields.bindAutoCompletion(shipper_address, address1);
+                        shipper_address.getItems().addAll(address1);
+                        shipper_address.setValue(address1.get(0));
                     }else {
-                        shipper_address.setText("");
+                        shipper_address.setValue("");
 
                     }
                 });
                 notifyPartyTextfield.textProperty().addListener((observable1, oldValue1, newValue1) -> {
                     if (newValue1.equals("")) {
-                        notify_party_address.setText("");
+                        notify_party_address.setValue("");
                     } else if (companyModel.isExistCompany(newValue1)) {
 //                        System.out.println(referenceTextfield.getText());
                         List<String> address2 = companyModel.getAllCompaniesAddresses(newValue1);
-                        TextFields.bindAutoCompletion(notify_party_address, address2);
+                        notify_party_address.getItems().addAll(address2);
+                        notify_party_address.setValue(address2.get(0));
                     } else {
-                        notify_party_address.setText("");
+                        notify_party_address.setValue("");
 
                     }
                 });
 
                 consigneeTextfield.textProperty().addListener((observable1, oldValue1, newValue1) -> {
                     if (newValue1.equals("")) {
-                        consignee_address.setText("");
+                        consignee_address.setValue("");
                     } else if (companyModel.isExistCompany(newValue1)) {
                         List<String> address3 = companyModel.getAllCompaniesAddresses(newValue1);
-                        TextFields.bindAutoCompletion(consignee_address, address3);
+                        consignee_address.getItems().addAll(address3);
+                        consignee_address.setValue(address3.get(0));
                     } else {
-                        consignee_address.setText("");
+                        consignee_address.setValue("");
                     }
                 });
 
@@ -1139,7 +957,7 @@ public class ManifestDetails implements Initializable {
                 e.printStackTrace();
             }
         } else {
-            logger.log("SEVERE", "Manifest.initialize.Database not Connected");
+//            logger.log("SEVERE", "Manifest.initialize.Database not Connected");
         }
     }
 
@@ -1151,24 +969,17 @@ public class ManifestDetails implements Initializable {
         referenceLabel.setText("");
         cbmErrorLabel.setText("");
         doExpiryErrorLabel.setText("");
-        unitErrorLabel.setText("");
         packageTypeErrorLabel.setText("");
         netWeightErrorLabel.setText("");
         numberOfPackagesErrorLabel.setText("");
         grossWeightErrorLabel.setText("");
-        remarksErrorLabel.setText("");
         descriptionErroLabel.setText("");
         consigneeErrorLabel.setText("");
         notifyPartyErrorLabel.setText("");
         hblErrorLabel.setText("");
         mblNumberErrorLabel.setText("");
         masterShipperErrorLabel.setText("");
-        serialNumberErrorLabel.setText("");
-        etaErrorLabel.setText("");
         marksErrorLabel.setText("");
-        vesselVoyageErrorLabel.setText("");
-        portOfLoadingErrorLabel.setText("");
-        portOfDischargeErrorLabel.setText("");
         freightErrorLabel.setText("");
     }
 
@@ -1193,29 +1004,18 @@ public class ManifestDetails implements Initializable {
         try {
             fileNumberLabel.setText(manifestModel.getFileNumber());
             systemReferenceLabel.setText(systemReference());
-            vesselVoyageTextfield.setText("");
-            portOfDischargeTextfield.setText("");
             mblTextField.setText("");
             masterShipperTextfield.setText("");
             consigneeTextfield.setText("");
             notifyPartyTextfield.setText("");
-            portOfLoadingTextfield.setText("");
-            serialNumberTextfield.setText("");
             hblNumberTextfield.setText("");
-            etaPicker.setValue(null);
-            shipper_address.setText("");
-            notify_party_address.setText("");
-            consignee_address.setText("");
             descriptionTextArea.setText("");
             marksTextArea.setText("");
-            remarksTextarea.setText("");
             grossWeightTextField.setText("");
             numberOfPackagesTextfield.setText("");
             netWeightTextfield.setText("");
             packageTypeTextfield.setText("");
-            unitTextfield.setText("");
             cbmTextfield.setText("");
-            freightTextfield.setText("");
             doExpiryPicker.setValue(null);
         } catch (SQLException e) {
             e.printStackTrace();
