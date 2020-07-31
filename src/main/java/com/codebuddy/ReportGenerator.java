@@ -88,7 +88,7 @@ public class ReportGenerator {
         HashMap param1 = new HashMap();
         param1.put("do_num", reference);
         param1.put("serial_num", serial_num);
-        param1.put("bl_num", mbl_num);
+        param1.put("bl_num", hbl_num);
         param1.put("agent_telephone", agent_telephone);
         param1.put("agent", agent_name+"\n"+agent_address);
 

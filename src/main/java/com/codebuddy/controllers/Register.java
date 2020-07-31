@@ -151,7 +151,8 @@ public class Register implements Initializable {
                 }
             });
         }else {
-//            logger.log("SEVERE","Register.initialize.Database not Connected");
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Database not initialized", ButtonType.OK);
+            alert.showAndWait();
         }
     }
 }

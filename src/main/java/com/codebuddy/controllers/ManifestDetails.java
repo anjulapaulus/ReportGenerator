@@ -591,6 +591,8 @@ public class ManifestDetails implements Initializable {
             doExpiryErrorLabel.setText("");
         }
 
+        //TODO: Do check to find containers for reference
+
         if (!referenceTextfield.getText().trim().isEmpty()
                 && !masterShipperTextfield.getText().trim().isEmpty()
                 && !notifyPartyTextfield.getText().trim().isEmpty()
@@ -955,7 +957,8 @@ public class ManifestDetails implements Initializable {
                 e.printStackTrace();
             }
         } else {
-//            logger.log("SEVERE", "Manifest.initialize.Database not Connected");
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Database not initialized", ButtonType.OK);
+            alert.showAndWait();
         }
     }
 

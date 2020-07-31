@@ -213,6 +213,9 @@ public class Company implements Initializable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }else {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Database not initialized", ButtonType.OK);
+            alert.showAndWait();
         }
 
     }

@@ -174,7 +174,8 @@ public class CompanyProfile implements Initializable {
             remarksTextArea.setText(CompanyProfileModel.getRemarks());
 
         } else {
-//            logger.log("SEVERE", "Company.initialize.Database not Connected");
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Database not initialized", ButtonType.OK);
+            alert.showAndWait();
         }
     }
 

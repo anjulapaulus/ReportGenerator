@@ -299,8 +299,8 @@ public class CargoDetails implements Initializable {
 
 
         } else {
-//            logger.log("SEVERE", "Company.initialize.Database not Connected");
-        }
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Database not initialized", ButtonType.OK);
+            alert.showAndWait();        }
     }
 
     private void setNull() {

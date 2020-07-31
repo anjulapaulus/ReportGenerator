@@ -106,7 +106,8 @@ public class DeleteUser implements Initializable {
             updateTable(connection);
             userTableView.setItems(users_table);
         }else {
-//            logger.log("SEVERE","Register.initialize.Database not Connected");
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Database not initialized", ButtonType.OK);
+            alert.showAndWait();
         }
     }
 }

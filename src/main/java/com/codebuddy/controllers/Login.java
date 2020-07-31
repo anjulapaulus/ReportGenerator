@@ -9,9 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -99,9 +97,10 @@ public class Login implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if (loginModel.idDBConnected()){
-//            logger.log("INFO","Login.initialize.Database Connected");
+
         }else {
-//            logger.log("SEVERE","Login.initialize.Database not Connected");
+           Alert alert = new Alert(Alert.AlertType.WARNING, "Database not initialized", ButtonType.OK);
+           alert.showAndWait();
         }
     }
 }

@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AdminHome implements Initializable {
+public class AdminHome{
     public void OpenCompanyProfile (ActionEvent event) {
 //        hideSource(event);
         Stage primaryStage = new Stage();
@@ -52,7 +52,7 @@ public class AdminHome implements Initializable {
             Pane root = loader.load(getClass().getResource("/views/manifest_details.fxml").openStream());
             Scene scene = new Scene(root, 1110, 700);
             primaryStage.setTitle("Cargo Maintenance System");
-//            primaryStage.setResizable(false);
+            primaryStage.setResizable(false);
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {
@@ -108,12 +108,4 @@ public class AdminHome implements Initializable {
         }
     }
 
-    private void hideSource(ActionEvent event) {
-        ((Node)event.getSource()).getScene().getWindow().hide();
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
 }
