@@ -14,13 +14,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Home implements Initializable {
+public class Home{
     public void OpenCompanyProfile (ActionEvent event) {
 //        hideSource(event);
         Stage primaryStage = new Stage();
         FXMLLoader loader = new FXMLLoader();
         try {
-            Pane root = loader.load(getClass().getResource("../views/company_profile.fxml").openStream());
+            Pane root = loader.load(getClass().getResource("/views/company_profile.fxml").openStream());
             Scene scene = new Scene(root, 600, 650);
             primaryStage.setTitle("Cargo Maintenance System");
             primaryStage.setResizable(false);
@@ -35,8 +35,8 @@ public class Home implements Initializable {
         Stage primaryStage = new Stage();
         FXMLLoader loader = new FXMLLoader();
         try {
-            Pane root = loader.load(getClass().getResource("../views/cargo_details.fxml").openStream());
-            Scene scene = new Scene(root, 820, 850);
+            Pane root = loader.load(getClass().getResource("/views/cargo_details.fxml").openStream());
+            Scene scene = new Scene(root, 820, 550);
             primaryStage.setTitle("Cargo Maintenance System");
             primaryStage.setResizable(false);
             primaryStage.setScene(scene);
@@ -51,10 +51,26 @@ public class Home implements Initializable {
         Stage primaryStage = new Stage();
         FXMLLoader loader = new FXMLLoader();
         try {
-            Pane root = loader.load(getClass().getResource("../views/manifest_details.fxml").openStream());
-            Scene scene = new Scene(root, 1300, 900);
+            Pane root = loader.load(getClass().getResource("/views/manifest_details.fxml").openStream());
+            Scene scene = new Scene(root, 1110, 700);
             primaryStage.setTitle("Cargo Maintenance System");
-//            primaryStage.setResizable(false);
+            primaryStage.setResizable(false);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void OpenCompanyDetails (ActionEvent event) {
+//        hideSource(event);
+        Stage primaryStage = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        try {
+            Pane root = loader.load(getClass().getResource("/views/company.fxml").openStream());
+            Scene scene = new Scene(root, 800, 600);
+            primaryStage.setTitle("Cargo Maintenance System");
+            primaryStage.setResizable(false);
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {
@@ -66,8 +82,4 @@ public class Home implements Initializable {
         ((Node)event.getSource()).getScene().getWindow().hide();
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
 }

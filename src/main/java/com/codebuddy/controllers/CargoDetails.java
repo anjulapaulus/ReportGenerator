@@ -11,12 +11,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.util.StringConverter;
+import org.controlsfx.control.textfield.TextFields;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -26,8 +28,6 @@ public class CargoDetails implements Initializable {
     private TextField referenceTextField;
     @FXML
     private DatePicker date;
-    @FXML
-    private TextArea remarksTextArea;
     @FXML
     private TextField vesselTextfield;
     @FXML
@@ -43,20 +43,6 @@ public class CargoDetails implements Initializable {
     @FXML
     private TextField serialNumberTextfield;
     @FXML
-    private TextField numberOfShipmentsTextfield;
-    @FXML
-    private TextField containerStatusTextField;
-    @FXML
-    private TextField DangerousCargoTextfield;
-    @FXML
-    private TextField liquorCigTextfield;
-    @FXML
-    private TextField sercuCargoTextField;
-    @FXML
-    private TextField transshipmentCargoTextField;
-    @FXML
-    private TextField personalCargoTextField;
-    @FXML
     private Label fileNumberLabel;
     @FXML
     private Label systemReferenceLabel;
@@ -65,37 +51,22 @@ public class CargoDetails implements Initializable {
     @FXML
     private Label referneceErrorLabel;
     @FXML
-    private Label containerStatusError;
-    @FXML
     private Label dateError;
-    @FXML
-    private Label dangerousCargoListError;
     @FXML
     private Label vesselError;
     @FXML
-    private Label liqCigError;
-    @FXML
     private Label voyageError;
-    @FXML
-    private Label securityCargoError;
     @FXML
     private Label dueOnError;
     @FXML
-    private Label transshipmentCargoError;
-    @FXML
     private Label portOfShipmentError;
-    @FXML
-    private Label personalCargoError;
     @FXML
     private Label portOfLoadingError;
     @FXML
     private Label portOfDischargeError;
     @FXML
     private Label serialNumberError;
-    @FXML
-    private Label NumShipmentsError;
-    @FXML
-    private Label remarksError;
+
 
     public CargoDetails() {
     }
@@ -136,11 +107,6 @@ public class CargoDetails implements Initializable {
             referneceErrorLabel.setText("");
         }
 
-        if (containerStatusTextField.getText().trim().isEmpty()) {
-            containerStatusError.setText("* container status field empty");
-        } else {
-            containerStatusError.setText("");
-        }
 
         if (date.getValue() == null) {
             dateError.setText("* date field empty");
@@ -148,21 +114,10 @@ public class CargoDetails implements Initializable {
             dateError.setText("");
         }
 
-        if (DangerousCargoTextfield.getText().trim().isEmpty()) {
-            dangerousCargoListError.setText("* dangerous cargo field empty");
-        } else {
-            dangerousCargoListError.setText("");
-        }
         if (vesselTextfield.getText().trim().isEmpty()) {
             vesselError.setText("* vessel field empty");
         } else {
             vesselError.setText("");
-        }
-
-        if (liquorCigTextfield.getText().trim().isEmpty()) {
-            liqCigError.setText("* liquor cigarette field empty");
-        } else {
-            liqCigError.setText("");
         }
 
         if (voyageTextField.getText().trim().isEmpty()) {
@@ -171,22 +126,10 @@ public class CargoDetails implements Initializable {
             voyageError.setText("");
         }
 
-        if (sercuCargoTextField.getText().trim().isEmpty()) {
-            securityCargoError.setText("* security cargo declaration field empty");
-        } else {
-            securityCargoError.setText("");
-        }
-
         if (dueOn.getValue() == null) {
             dueOnError.setText("* due on field empty");
         } else {
             dueOnError.setText("");
-        }
-
-        if (transshipmentCargoTextField.getText().trim().isEmpty()) {
-            transshipmentCargoError.setText("* transshipment cargo field empty");
-        } else {
-            transshipmentCargoError.setText("");
         }
 
         if (portOfShipmentTextField.getText().trim().isEmpty()) {
@@ -195,22 +138,10 @@ public class CargoDetails implements Initializable {
             portOfShipmentError.setText("");
         }
 
-        if (personalCargoTextField.getText().trim().isEmpty()) {
-            personalCargoError.setText("* personal cargo field empty");
-        } else {
-            personalCargoError.setText("");
-        }
-
         if (portOfLoadingTextField.getText().trim().isEmpty()) {
             portOfLoadingError.setText("* port of loading field empty");
         } else {
             portOfLoadingError.setText("");
-        }
-
-        if (remarksTextArea.getText().trim().isEmpty()) {
-            remarksError.setText("* remarks field empty");
-        } else {
-            remarksError.setText("");
         }
 
         if (portOfDischargeTextfield.getText().trim().isEmpty()) {
@@ -225,28 +156,15 @@ public class CargoDetails implements Initializable {
             serialNumberError.setText("");
         }
 
-        if (numberOfShipmentsTextfield.getText().trim().isEmpty()) {
-            NumShipmentsError.setText("* number of shipments field empty");
-        } else {
-            NumShipmentsError.setText("");
-        }
         if (!referenceTextField.getText().trim().isEmpty()
-                && !containerStatusTextField.getText().trim().isEmpty()
                 && date.getValue() != null
-                && !DangerousCargoTextfield.getText().trim().isEmpty()
                 && !vesselTextfield.getText().trim().isEmpty()
-                && !liquorCigTextfield.getText().trim().isEmpty()
                 && !voyageTextField.getText().trim().isEmpty()
-                && !sercuCargoTextField.getText().trim().isEmpty()
                 && dueOn.getValue() != null
-                && !transshipmentCargoTextField.getText().trim().isEmpty()
                 & !portOfShipmentTextField.getText().trim().isEmpty()
-                & !personalCargoTextField.getText().trim().isEmpty()
                 & !portOfLoadingTextField.getText().trim().isEmpty()
-                & !remarksTextArea.getText().trim().isEmpty()
                 & !portOfDischargeTextfield.getText().trim().isEmpty()
                 & !serialNumberTextfield.getText().trim().isEmpty()
-                & !numberOfShipmentsTextfield.getText().trim().isEmpty()
         ) {
             try {
                 if (!cargoDetailsModel.isExistCargoDetails(referenceTextField.getText())) {
@@ -261,15 +179,7 @@ public class CargoDetails implements Initializable {
                             portOfShipmentTextField.getText(),
                             portOfLoadingTextField.getText(),
                             portOfDischargeTextfield.getText(),
-                            serialNumberTextfield.getText(),
-                            numberOfShipmentsTextfield.getText(),
-                            containerStatusTextField.getText(),
-                            DangerousCargoTextfield.getText(),
-                            liquorCigTextfield.getText(),
-                            sercuCargoTextField.getText(),
-                            transshipmentCargoTextField.getText(),
-                            personalCargoTextField.getText(),
-                            remarksTextArea.getText()
+                            serialNumberTextfield.getText()
                     );
                     if (check) {
                         Alert alert = new Alert(Alert.AlertType.INFORMATION, "The cargo details have been inserted", ButtonType.OK);
@@ -288,15 +198,7 @@ public class CargoDetails implements Initializable {
                             portOfShipmentTextField.getText(),
                             portOfLoadingTextField.getText(),
                             portOfDischargeTextfield.getText(),
-                            serialNumberTextfield.getText(),
-                            numberOfShipmentsTextfield.getText(),
-                            containerStatusTextField.getText(),
-                            DangerousCargoTextfield.getText(),
-                            liquorCigTextfield.getText(),
-                            sercuCargoTextField.getText(),
-                            transshipmentCargoTextField.getText(),
-                            personalCargoTextField.getText(),
-                            remarksTextArea.getText()
+                            serialNumberTextfield.getText()
                     );
                     if (check) {
                         Alert alert = new Alert(Alert.AlertType.INFORMATION, "The cargo details have been updated", ButtonType.OK);
@@ -351,8 +253,10 @@ public class CargoDetails implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if (cargoDetailsModel.idDBConnected()) {
-            logger.log("INFO", "Company.initialize.Database Connected");
+//            logger.log("INFO", "Company.initialize.Database Connected");
             try {
+                List<String> list1 = cargoDetailsModel.getAllCargoDetails();
+                TextFields.bindAutoCompletion(referenceTextField, list1);
                 fileNumberLabel.setText(cargoDetailsModel.getFileNumber());
                 systemReferenceLabel.setText(systemReference());
             } catch (SQLException e) {
@@ -379,31 +283,15 @@ public class CargoDetails implements Initializable {
                     portOfLoadingTextField.setText(CargoDetailsModel.getPort_loading());
                     portOfDischargeTextfield.setText(CargoDetailsModel.getPort_discharge());
                     serialNumberTextfield.setText(CargoDetailsModel.getSerial_number());
-                    numberOfShipmentsTextfield.setText(CargoDetailsModel.getNum_shipments());
-                    containerStatusTextField.setText(CargoDetailsModel.getContainer_status());
-                    DangerousCargoTextfield.setText(CargoDetailsModel.getDangerous_cargo_list());
-                    liquorCigTextfield.setText(CargoDetailsModel.getLiquor_cigerettes());
-                    sercuCargoTextField.setText(CargoDetailsModel.getSecurity_cargo_declaration());
-                    transshipmentCargoTextField.setText(CargoDetailsModel.getTransshipment_cargo());
-                    personalCargoTextField.setText(CargoDetailsModel.getPersonal_cargo());
-                    remarksTextArea.setText(CargoDetailsModel.getRemarks());
                     referneceErrorLabel.setText("");
-                    containerStatusError.setText("");
                     dateError.setText("");
-                    dangerousCargoListError.setText("");
                     vesselError.setText("");
-                    liqCigError.setText("");
                     voyageError.setText("");
-                    securityCargoError.setText("");
                     dueOnError.setText("");
-                    transshipmentCargoError.setText("");
                     portOfShipmentError.setText("");
-                    personalCargoError.setText("");
                     portOfLoadingError.setText("");
-                    remarksError.setText("");
                     portOfDischargeError.setText("");
                     serialNumberError.setText("");
-                    NumShipmentsError.setText("");
                 }else {
                     setNull();
                 }
@@ -411,8 +299,8 @@ public class CargoDetails implements Initializable {
 
 
         } else {
-            logger.log("SEVERE", "Company.initialize.Database not Connected");
-        }
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Database not initialized", ButtonType.OK);
+            alert.showAndWait();        }
     }
 
     private void setNull() {
@@ -427,14 +315,6 @@ public class CargoDetails implements Initializable {
             portOfLoadingTextField.setText("");
             portOfDischargeTextfield.setText("");
             serialNumberTextfield.setText("");
-            numberOfShipmentsTextfield.setText("");
-            containerStatusTextField.setText("");
-            DangerousCargoTextfield.setText("");
-            liquorCigTextfield.setText("");
-            sercuCargoTextField.setText("");
-            transshipmentCargoTextField.setText("");
-            personalCargoTextField.setText("");
-            remarksTextArea.setText("");
         } catch (SQLException e) {
             e.printStackTrace();
         }

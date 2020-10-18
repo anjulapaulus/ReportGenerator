@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Main-Class: com.codebuddy.Main
+Class-Path: javax.inject-1.jar commons-beanutils-1.9.4.jar commons-loggi
+ ng-1.1.1.jar commons-collections-3.2.2.jar openjfx-dialogs-1.0.2.jar ec
+ j-3.21.0.jar bcprov-jdk15on-1.62.jar jackson-annotations-2.10.0.jar ite
+ xt-2.1.7.js7.jar jackson-databind-2.10.0.jar sqlite-jdbc-3.32.3.jar jac
+ kson-core-2.10.0.jar jfreechart-1.0.19.jar commons-collections4-4.2.jar
+  jasperreports-6.13.0.jar castor-core-1.4.1.jar commons-lang3-3.4.jar j
+ common-1.0.23.jar commons-digester-2.1.jar controlsfx-8.20.8.jar castor
+ -xml-1.4.1.jar
+

@@ -9,9 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -51,12 +49,12 @@ public class Login implements Initializable {
             errorPasswordLabel.setText("");
             try {
                 String role = loginModel.login(emailField.getText(),passwordField.getText());
-                if (role != null && role.equals("admin")){
+                if (role != null && role.equals("user")){
                     ((Node)event.getSource()).getScene().getWindow().hide();
                     Stage primaryStage = new Stage();
                     FXMLLoader loader = new FXMLLoader();
                     try {
-                        Pane root = loader.load(getClass().getResource("../views/home.fxml").openStream());
+                        Pane root = loader.load(getClass().getResource("/views/home.fxml").openStream());
                         Scene scene = new Scene(root, 600, 400);
                         primaryStage.setTitle("Cargo Maintenance System");
                         primaryStage.setResizable(false);
@@ -66,9 +64,21 @@ public class Login implements Initializable {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                }else if (role != null && role.equals("user")){
-                    //FIXME: Admin Home
-                    errorPasswordLabel.setText("hari ela");
+                }else if (role != null && role.equals("admin")){
+                    ((Node)event.getSource()).getScene().getWindow().hide();
+                    Stage primaryStage = new Stage();
+                    FXMLLoader loader = new FXMLLoader();
+                    try {
+                        Pane root = loader.load(getClass().getResource("/views/admin_home.fxml").openStream());
+                        Scene scene = new Scene(root, 600, 400);
+                        primaryStage.setTitle("Cargo Maintenance System");
+                        primaryStage.setResizable(false);
+                        primaryStage.setScene(scene);
+                        primaryStage.show();
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }else {
                     errorPasswordLabel.setText("Username and password incorrect");
                 }
@@ -87,9 +97,10 @@ public class Login implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if (loginModel.idDBConnected()){
-            logger.log("INFO","Login.initialize.Database Connected");
+
         }else {
-            logger.log("SEVERE","Login.initialize.Database not Connected");
+           Alert alert = new Alert(Alert.AlertType.WARNING, "Database not initialized", ButtonType.OK);
+           alert.showAndWait();
         }
     }
 }
